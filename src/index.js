@@ -8,12 +8,11 @@ import Visualisation from './Visualisation/Visualisation';
 import 'normalize-css/normalize.css';
 import './index.css';
 
-let repo = `/${window.location.pathname.split('/')[1]}`;
-console.log(repo);
+console.log(process);
 
 const Root = () => {
   return (
-    <BrowserRouter basename={ repo }>
+    <BrowserRouter basename={ '/oorlogsslachtoffers' }>
       <div>
         <Match exactly pattern="/" component={ Introduction } />
         <Match exactly pattern="/visualisatie" component={ Visualisation } />
