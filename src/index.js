@@ -8,7 +8,8 @@ import Visualisation from './Visualisation/Visualisation';
 import 'normalize-css/normalize.css';
 import './index.css';
 
-let repo = `/${window.location.pathname.split('/')[1]}/`;
+let repo = `/${window.location.pathname.split('/')[1]}`;
+console.log(repo);
 
 const Root = () => {
   return (
