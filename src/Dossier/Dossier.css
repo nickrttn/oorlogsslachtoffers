@@ -1,0 +1,9 @@
+.dossier {
+  width: 20vw;
+
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+
+  color: white;
+}

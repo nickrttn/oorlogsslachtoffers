@@ -1,0 +1,21 @@
+.manipulation {
+  align-self: flex-start;
+  min-width: 100vw;
+
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+
+  color: white;
+  padding: 0 0 1.5em;
+  position: relative;
+}
+
+.manipulation:after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  height: 1px;
+  width: calc(100% - 4vw);
+  background: linear-gradient(to left, transparent 0%, white 20%, white 80%, transparent 100%);
+}

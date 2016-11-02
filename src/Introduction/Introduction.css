@@ -1,6 +1,6 @@
 .introduction {
-  background: url(./introduction-background.png) no-repeat center,
-              url(./clouds.png) no-repeat center,
+  background: url(./images/introduction-background.png) no-repeat center,
+              url(./images/clouds.png) no-repeat center,
               radial-gradient(circle, rgba(251, 212, 119, 0.1) 0%, rgba(63, 55, 39, 0) 40%),
               #29241C;
   background-blend-mode: normal, overlay, normal, normal;
@@ -17,14 +17,19 @@
   color: white;
   font-size: 5em;
   font-weight: 400;
+  text-align: center;
 }
 
 .introduction__subtitle {
   color: rgba(251, 212, 119, 1);
-  font-size: 1.75em;
+  font-size: 2em;
   letter-spacing: 1px;
+  margin-bottom: .5em;
+  margin-top: 0;
 }
 
-.button--introduction {
+.button.button--introduction {
   box-shadow: inset 0 -3px rgba(0, 0, 0, 0.3);
+  font-size: 1.5em;
+  padding: .75em 2em;
 }

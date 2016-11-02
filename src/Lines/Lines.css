@@ -1,0 +1,27 @@
+.lines {
+  align-self: flex-start;
+  width: 80vw;
+
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+
+  padding: 0 2vw;
+  color: white;
+}
+
+.legend {
+  display: flex;
+  padding: 1em 0;
+}
+
+.legend__definition {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 2em;
+}
+
+.legend__image {
+  margin-right: 1em;
+  max-height: 1.25em;
+}

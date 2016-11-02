@@ -1,0 +1,30 @@
+.visualisation {
+  background: url(./clouds.png) no-repeat center,
+              radial-gradient(circle, rgba(251, 212, 119, 0.1) 0%, rgba(63, 55, 39, 0) 40%),
+              #29241C;
+  background-blend-mode: overlay, normal, normal;
+  background-size: cover, contain, cover;
+
+  display: flex;
+  flex-flow: row wrap;
+  align-content: flex-start;
+  align-items: flex-start;
+  justify-content: flex-start;
+  min-height: 100vh;
+}
+
+.header {
+  min-width: 100vw;
+  align-self: flex-start;
+
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+}
+
+.header__title {
+  text-align: center;
+  color: white;
+  font-size: 2em;
+  margin: 1.5em 0;
+}
