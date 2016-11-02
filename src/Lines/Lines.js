@@ -6,9 +6,9 @@ import Legend from '../Legend/Legend';
 
 // Assets
 import './Lines.css';
-import star from './svg/star.svg';
-import cross from './svg/cross.svg';
-import monument from './svg/monument.svg';
+// import star from './svg/star.svg';
+// import cross from './svg/cross.svg';
+// import monument from './svg/monument.svg';
 
 class Lines extends Component {
   render() {
