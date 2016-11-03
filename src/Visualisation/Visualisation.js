@@ -69,7 +69,7 @@ class Visualisation extends Component {
 
   setActivePerson = (id) => {
     const activePerson = this.state.data.find(d => d.id === id);
-    console.log(activePerson);
+    this.setState({ activePerson });
   }
 
   render() {
