@@ -1,6 +1,6 @@
 // Modules
 import React, { Component, PropTypes } from 'react';
-import { scaleTime } from 'd3';
+import { axisBottom, scaleTime, select } from 'd3';
 import moment from 'moment';
 
 // Components
@@ -18,12 +18,15 @@ class Lines extends Component {
   }
 
   componentDidMount() {
-    const { data } = this.props;
     const bbox = this._visualisation.getBoundingClientRect();
 
     const xScale = scaleTime()
       .domain([moment('1875-01-01'), moment('1960-01-01')])
       .range([0, bbox.width]);
+
+    const axis = axisBottom(xScale);
+
+    select(this._axis).call(axis);
 
     this.setState({ x: xScale });
   }
@@ -74,6 +77,7 @@ class Lines extends Component {
             { data.length > 0 && this.renderWarRect() }
             { data.length > 0 && data.map((d, i) => this.renderLine(d, i)) }
           </svg>
+          <svg ref={ ref => this._axis = ref } className="axis" width='78vw' height="50px" />
         </section>
       </section>
     );

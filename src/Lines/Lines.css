@@ -29,6 +29,14 @@
   flex: 1;
   display: flex;
   padding-bottom: 2vw;
+  position: relative;
+}
+
+.lines__visualisation .axis {
+  position: fixed;
+  bottom: 0;
+  left: 2vw;
+  background: blue;
 }
 
 .lines__visualisation .war {
