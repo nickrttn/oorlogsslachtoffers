@@ -15,6 +15,7 @@ import './Lines.css';
 class Lines extends Component {
   static props = {
     data: PropTypes.array.isRequired,
+    handleLineClick: PropTypes.func.isRequired,
   }
 
   componentDidMount() {
@@ -24,8 +25,7 @@ class Lines extends Component {
       .domain([moment('1875-01-01'), moment('1960-01-01')])
       .range([0, bbox.width]);
 
-    const axis = axisBottom(xScale);
-
+    const axis = axisBottom(xScale).ticks(15);
     select(this._axis).call(axis);
 
     this.setState({ x: xScale });
@@ -73,11 +73,16 @@ class Lines extends Component {
           ref={ ref => this._visualisation = ref }
           className="lines__visualisation"
         >
-          <svg width="100%" height={ (data.length * 12) + 10 }>
+          <svg width="100%" height={ (data.length * 12) + 30 }>
             { data.length > 0 && this.renderWarRect() }
-            { data.length > 0 && data.map((d, i) => this.renderLine(d, i)) }
+            { data.length > 0 && data.map((d, i) =>
+              <Line key={ d.id } x={ this.state.x } d={d} i={i} handleClick={ this.props.handleLineClick } />
+            )}
           </svg>
-          <svg ref={ ref => this._axis = ref } className="axis" width='78vw' height="50px" />
+          <svg className="axis" width='78vw' height="50px">
+            <g ref={ ref => this._axis = ref }
+              transform="translate(0, 10)"></g>
+          </svg>
         </section>
       </section>
     );
@@ -85,3 +90,23 @@ class Lines extends Component {
 }
 
 export default Lines;
+
+const Line = (props) => (
+  <g>
+    <rect
+      x={ props.x(props.d.birthdate) }
+      y={ 5 + (props.i * 12) - 6 }
+      width={ props.x(props.d.dateOfDeath) - props.x(props.d.birthdate) }
+      height="12px"
+      fill="transparent"
+      onClick={ () => props.handleClick(props.d.id) }
+    />
+    <line
+        className="lines__line"
+        x1={ props.x(props.d.birthdate) }
+        x2={ props.x(props.d.dateOfDeath) }
+        y1={ 5 + (props.i * 12) }
+        y2={ 5 + (props.i * 12) }
+    />
+  </g>
+)

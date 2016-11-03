@@ -32,11 +32,31 @@
   position: relative;
 }
 
-.lines__visualisation .axis {
+.lines__line {
+  stroke-width: 1;
+  stroke: white;
+}
+
+.axis {
   position: fixed;
   bottom: 0;
-  left: 2vw;
-  background: blue;
+  left: 0;
+  background: linear-gradient(to bottom, transparent 0%, #29241C 30%);
+  padding-left: 2vw;
+}
+
+.axis .domain {
+  opacity: 0;
+}
+
+.axis .tick line {
+  stroke: white;
+}
+
+.axis .tick text {
+  fill: white;
+  font-size: 1.5em;
+  font-family: --apple-system, 'Segoe UI', sans-serif;
 }
 
 .lines__visualisation .war {
