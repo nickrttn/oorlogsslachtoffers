@@ -13,7 +13,8 @@ import './Visualisation.css';
 
 class Visualisation extends Component {
   state = {
-    data: []
+    data: [],
+    activePerson: {},
   }
 
   componentDidMount() {
@@ -66,8 +67,12 @@ class Visualisation extends Component {
     this.setState({ data });
   }
 
+  setActivePerson = (id) => {
+    const activePerson = this.state.data.find(d => d.id === id);
+    console.log(activePerson);
+  }
+
   render() {
-    console.log(this.state.data);
     return (
       <div className="container">
         <header className="header">
@@ -79,10 +84,10 @@ class Visualisation extends Component {
 
         <main className="visualisation">
           { /* In Lines zit de daadwerkelijke visualisatie. */ }
-          <Lines data={ this.state.data } />
+          <Lines data={ this.state.data } handleLineClick={ this.setActivePerson } />
 
           { /* In Dossier zit de aside met persoonsgegevens en filteropties. */ }
-          <Dossier />
+          <Dossier person={ this.state.activePerson } />
         </main>
       </div>
     );
