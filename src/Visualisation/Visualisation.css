@@ -1,4 +1,4 @@
-.visualisation {
+.container {
   background: url(./clouds.png) no-repeat center,
               radial-gradient(circle, rgba(251, 212, 119, 0.1) 0%, rgba(63, 55, 39, 0) 40%),
               #29241C;
@@ -6,11 +6,15 @@
   background-size: cover, contain, cover;
 
   display: flex;
-  flex-flow: row wrap;
-  align-content: flex-start;
-  align-items: flex-start;
-  justify-content: flex-start;
+  flex-flow: column nowrap;
   min-height: 100vh;
+}
+
+.visualisation {
+  flex: 1;
+
+  display: flex;
+  flex-flow: row nowrap;
 }
 
 .header {

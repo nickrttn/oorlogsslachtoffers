@@ -1,10 +1,9 @@
 .lines {
-  align-self: flex-start;
   width: 80vw;
+  flex: 1 0 auto;
 
   display: flex;
   flex-flow: column nowrap;
-  justify-content: flex-start;
 
   padding: 0 2vw;
   color: white;
@@ -24,4 +23,15 @@
 .legend__image {
   margin-right: 1em;
   max-height: 1.25em;
+}
+
+.lines__visualisation {
+  flex: 1;
+  display: flex;
+  padding-bottom: 2vw;
+}
+
+.lines__visualisation .war {
+  fill: rgb(255, 0, 0);
+  mix-blend-mode: soft-light;
 }
