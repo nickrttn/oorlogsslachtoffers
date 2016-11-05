@@ -6,12 +6,11 @@ import 'moment/locale/nl';
 
 // Components
 import Legend from '../Legend/Legend';
+import Line from '../Line/Line';
+import Tooltip from '../Tooltip/Tooltip';
 
 // Assets
 import './Lines.css';
-import star from './svg/star.svg';
-import cross from './svg/cross.svg';
-// import monument from './svg/monument.svg';
 
 class Lines extends Component {
   static props = {
@@ -36,22 +35,6 @@ class Lines extends Component {
     this.setState({ x: xScale });
   }
 
-  renderLine = (d, i) => {
-    const { x } = this.state;
-
-    return (
-      <line key={ d.id }
-        id={ d.id }
-        x1={ x(d.birthdate) }
-        x2={ x(d.dateOfDeath) }
-        y1={ 5 + (i * 12) }
-        y2={ 5 + (i * 12) }
-        stroke="white"
-        strokeWidth="1"
-      />
-    );
-  }
-
   renderWarRect = () => {
     const { x } = this.state;
     const war = {
@@ -68,24 +51,31 @@ class Lines extends Component {
     />
   }
 
-  showTooltip = (d) => {
+  showTooltip = (event, person) => {
     this.setState({
       tooltip: {
-        name: d.name,
-        birth: d.birthdate.format('DD MMMM YYYY'),
-        death: d.dateOfDeath.format('DD MMMM YYYY'),
-        profession: d.profession,
+        show: true,
+        person: {
+          name: person.name,
+          birth: person.birthdate.format('DD MMMM YYYY'),
+          death: person.dateOfDeath.format('DD MMMM YYYY'),
+          profession: person.profession,
+        },
+        position: {
+          x: event.nativeEvent.x + 15,
+          y: event.nativeEvent.y,
+        }
       }
     });
   }
 
   hideTooltip = () => {
-    this.setState({ tooltip: false });
+    this.setState({ tooltip: { show: false }});
   }
 
   render() {
-    const { data } = this.props;
-    const { tooltip } = this.state;
+    const { data, handleLineClick } = this.props;
+    const { tooltip, x } = this.state;
 
     return (
       <section className="lines">
@@ -94,25 +84,23 @@ class Lines extends Component {
           ref={ ref => this._visualisation = ref }
           className="lines__visualisation"
         >
-          <svg width="100%" height={ (data.length * 12) + 30 }>
+          <svg width="100%" height={ (data.length * 20) + 30 }>
             { data.length > 0 && this.renderWarRect() }
             { data.length > 0 && data.map((d, i) =>
-              <Line key={ d.id } x={ this.state.x } d={d} i={i} hideTooltip={ this.hideTooltip } showTooltip={ this.showTooltip } handleClick={ this.props.handleLineClick } />
+              <Line
+                key={ d.id } d={d} i={i} y={ 10 + i * 20 }
+                x1={ x(d.birthdate) } x2={ x(d.dateOfDeath) }
+                hideTooltip={ this.hideTooltip }
+                showTooltip={ this.showTooltip }
+                handleClick={ handleLineClick } />
             )}
           </svg>
-          <svg className="axis" width='78vw' height="50px">
+          <svg className="axis" width='60vw' height="50px">
             <g ref={ ref => this._axis = ref }
               transform="translate(0, 10)"></g>
           </svg>
-          { tooltip &&
-            <div className="tooltip">
-              <h4>{ tooltip.name }</h4>
-              <p>{ tooltip.profession }</p>
-              <p><img src={ star } alt="Geboortedatum" /> { tooltip.birth }</p>
-              <p><img src={ cross } alt="Sterfdatum" /> { tooltip.death }</p>
-              <p>Klik op de lijn om het dossier te bekijken</p>
-            </div>
-          }
+
+          <Tooltip { ...tooltip } />
         </section>
       </section>
     );
@@ -120,25 +108,3 @@ class Lines extends Component {
 }
 
 export default Lines;
-
-const Line = (props) => (
-  <g>
-    <rect
-      x={ props.x(props.d.birthdate) }
-      y={ 5 + (props.i * 12) - 6 }
-      width={ props.x(props.d.dateOfDeath) - props.x(props.d.birthdate) }
-      height="12px"
-      fill="transparent"
-      onClick={ () => props.handleClick(props.d.id) }
-      onMouseOver={ () => props.showTooltip(props.d) }
-      onMouseOut={ () => props.hideTooltip() }
-    />
-    <line
-        className="lines__line"
-        x1={ props.x(props.d.birthdate) }
-        x2={ props.x(props.d.dateOfDeath) }
-        y1={ 5 + (props.i * 12) }
-        y2={ 5 + (props.i * 12) }
-    />
-  </g>
-)

@@ -7,6 +7,8 @@ class Dossier extends Component {
   }
 
   render() {
+    console.log(this.props.person);
+    // const {  } = { ...person }
     return (
       <section className="dossier">
         <p>Hier komen persoonsgegevens en filteropties.</p>

@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { parse } from 'papaparse';
 import moment from 'moment';
+import 'moment/locale/nl';
 
 // Components
 import Manipulation from '../Manipulation/Manipulation';
@@ -39,7 +40,6 @@ class Visualisation extends Component {
       errors: results.errors,
     });
   }
-
 
   dataCleanup = (results) => {
     // DEVELOPMENT PURPOSES ONLY, REMOVE BEFORE PRODUCTION
