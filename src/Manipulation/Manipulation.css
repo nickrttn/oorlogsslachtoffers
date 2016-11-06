@@ -19,3 +19,37 @@
   width: calc(100% - 4vw);
   background: linear-gradient(to left, transparent 0%, rgba(255, 255, 255, 0.6) 20%, rgba(255, 255, 255, 0.6) 80%, transparent 100%);
 }
+
+.manipulation__filters {
+  display: flex;
+  align-items: flex-start;
+  background: #332D25;
+  position: absolute;
+  bottom: -80vh;
+  left: 0;
+  padding: 2vw 4vw;
+  width: 100vw;
+  height: 80vh;
+  z-index: 1;
+}
+
+.manipulation__filterbuttons {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: flex-start;
+}
+
+.manipulation__filterbuttons button {
+  appearance: none;
+  background: none;
+  border: 0;
+  color: white;
+  font-size: 1em;
+  margin-bottom: .5em;
+}
+
+.reset {
+  position: absolute;
+  bottom: 2vw;
+  right: 2vw;
+}

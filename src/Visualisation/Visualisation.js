@@ -47,6 +47,8 @@ class Visualisation extends Component {
 
     const data = results.data.map(person => ({
       id: parseInt(person.grafnummer, 10),
+      active: false,
+      activeInFilter: false,
       name: person.naam,
       sex: person.geslacht,
       birthdate: moment(person.geboortedatum, 'YYYY-MM-DD'),
@@ -64,12 +66,38 @@ class Visualisation extends Component {
       story: person.verhaal ? person.verhaal : false,
     }));
 
+    data[0].active = true;
+
+    this.setState({ data, activePerson: data[0] });
+  }
+
+  resetFilter = () => {
+    const data = [ ...this.state.data ];
+    data.forEach(d => d.activeInFilter = false);
+    this.setState({ data });
+  }
+
+  filterData = (key, value) => {
+    const data = [ ...this.state.data ];
+
+    data.forEach(d => {
+      if (d[key] === value) {
+        d.activeInFilter = true;
+      }
+    })
+
     this.setState({ data });
   }
 
   setActivePerson = (id) => {
-    const activePerson = this.state.data.find(d => d.id === id);
-    this.setState({ activePerson });
+    const data = [ ...this.state.data ];
+    let activePerson = data.find(d => id === d.id);
+    const activePersonIndex = data.findIndex(d => id === d.id);
+
+    data.forEach(d => d.active = false);
+    data[activePersonIndex].active = true;
+
+    this.setState({ activePerson, data });
   }
 
   render() {
@@ -80,7 +108,7 @@ class Visualisation extends Component {
         </header>
 
         { /* In Manipulation zitten filters, sorteeropties en de brush. */ }
-        <Manipulation />
+        <Manipulation filterData={ this.filterData } resetFilter={ this.resetFilter } />
 
         <main className="visualisation">
           { /* In Lines zit de daadwerkelijke visualisatie. */ }

@@ -37,7 +37,7 @@ class Line extends Component {
           <Motion
             defaultStyle={{ x2: x1 }}
             style={{ x2: spring(x2, {stiffness: 50, damping: 20}) }}>
-            { style => <line className="line" x1={ x1 } x2={ style.x2 } y1={ y } y2={ y } />
+            { style => <line className="line" x1={ x1 } x2={ style.x2 } y1={ y } y2={ y } style={{ opacity: d.active || d.activeInFilter ? 1 : 0.3, strokeWidth: d.active ? 4 : 2, stroke: d.active ? '#fbd477' : '#fff' }} />
             }
           </Motion>
         <image x={ x2 + 6 } y={ y - 5 } height="10" preserveAspectRatio="xMinYMid" xlinkHref={ cross } />
