@@ -86,13 +86,13 @@ class Visualisation extends Component {
       let falseHits = 0;
 
       activeFilters.forEach(filter => {
-        const filterKey = filter.keys()[0];
-        if (!d[key].includes(filterKey[key])) {
+        const filterKey = Object.keys(filter)[0];
+        if (!d[key].includes(filter[filterKey])) {
           falseHits++;
         }
       });
 
-      d.activeInFilter = falseHits > 0 ? false : true;
+      d.activeInFilter = falseHits < activeFilters.length;
     });
 
     this.setState({ activeFilters, data });
