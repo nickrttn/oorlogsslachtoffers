@@ -4,10 +4,10 @@
 
   display: flex;
   flex-flow: row wrap;
-  justify-content: center;
+  justify-content: flex-start;
 
   color: white;
-  padding: 0 0 1.5em;
+  padding: 0 1vw 1.5em;
   position: relative;
 }
 
@@ -23,7 +23,9 @@
 
 .manipulation__filters {
   display: flex;
-  align-items: flex-start;
+  align-items: baseline;
+  justify-content: flex-start;
+
   background: #332D25;
   position: absolute;
   bottom: calc(-80vh - 2px);
@@ -38,6 +40,11 @@
   display: flex;
   flex-flow: column nowrap;
   align-items: flex-start;
+  margin-right: 4vw;
+}
+
+.manipulation__filterbuttons:last-of-type {
+  margin-right: 0;
 }
 
 .manipulation__filterbuttons button {
@@ -45,12 +52,60 @@
   background: none;
   border: 0;
   color: white;
-  font-size: 1em;
+  font-size: 1.2em;
   margin-bottom: .5em;
 }
 
-.reset {
-  position: absolute;
-  bottom: 2vw;
-  right: 2vw;
+.manipulation__filterbuttons button:hover {
+  text-decoration: underline;
+}
+
+.activeFilters {
+  margin: 0 1em;
+  color: #C0BEBB;
+}
+
+.activeFilters p {
+  margin-bottom: .5em;
+}
+
+.activeFilters ul {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  list-style-type: none;
+  padding-left: 0;
+  margin-left: 0;
+}
+
+.activeFilters li {
+  margin-right: 1em;
+}
+
+.activeFilters li:last-of-type {
+  margin-right: 0em;
+}
+
+.activeFilters button {
+  appearance: none;
+  border: 1px solid white;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-size: 1em;
+  padding: .5em 1em;
+  border-radius: .25em;
+}
+
+.close {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  margin-left: auto;
+  font-size: 1em;
+  color: #fff;
+}
+
+.activeFilters .reset {
+  border: 1px solid rgba(210, 0, 0, 1);
+  background: rgba(210, 0, 0, 0.1);
 }
