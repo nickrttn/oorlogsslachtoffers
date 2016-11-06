@@ -47,13 +47,17 @@
   margin-right: 0;
 }
 
+.manipulation__filterbuttons h4 {
+  margin-bottom: 1.5em;
+}
+
 .manipulation__filterbuttons button {
   appearance: none;
   background: none;
   border: 0;
   color: white;
   font-size: 1.2em;
-  margin-bottom: .5em;
+  margin-bottom: .75em;
 }
 
 .manipulation__filterbuttons button:hover {
