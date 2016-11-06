@@ -80,17 +80,26 @@ class Visualisation extends Component {
     const data = [ ...this.state.data ];
     const activeFilters = [ ...this.state.activeFilters ];
 
+    activeFilters.push({ [key]: value });
+
     data.forEach(d => {
-      if (d[key].includes(value)) {
-        d.activeInFilter = true;
-      }
+      let falseHits = 0;
+
+      activeFilters.forEach(filter => {
+        const filterKey = filter.keys()[0];
+        if (!d[key].includes(filterKey[key])) {
+          falseHits++;
+        }
+      });
+
+      d.activeInFilter = falseHits > 0 ? false : true;
     });
 
-    activeFilters.push(value);
-
-    console.log(activeFilters);
-
     this.setState({ activeFilters, data });
+  }
+
+  sortData = (key) => {
+
   }
 
   setActivePerson = (id) => {

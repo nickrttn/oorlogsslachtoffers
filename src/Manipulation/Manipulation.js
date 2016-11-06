@@ -20,9 +20,10 @@ class Manipulation extends Component {
 
   renderActiveFilters = () => {
     return !this.props.activeFilters ? null :
-    this.props.activeFilters.map((filter, index) => (
-      <li key={ `${filter}-${index}` }>{ filter }</li>
-    ));
+    this.props.activeFilters.map((filter, index) => {
+      const key = Object.keys(filter)[0];
+      return (<li key={ `${key}-${index}` }>{ filter[key] }</li>);
+    });
   }
 
   render() {
