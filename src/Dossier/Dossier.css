@@ -57,19 +57,41 @@
   margin-left: 1.5vw;
 }
 
-.dossier__passport-filters p,
-.dossier__passport-filters button {
+.dossier__passport-filters p {
   display: flex;
   flex-flow: column nowrap;
   margin-bottom: 1em;
 }
 
 .dossier__passport-filters button {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  margin-bottom: 1em;
   appearance: none;
   background: 0;
   border: 0;
   padding: 0;
 }
+
+.dossier__passport-filters button svg {
+  fill: rgba(255, 255, 255, 0.2);
+  height: 1em;
+  width: auto;
+  transition: all 120ms ease-in-out;
+}
+
+.dossier__passport-filters button.active svg {
+  fill: rgb(251, 212, 119);
+}
+
+.dossier__filter-text {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: flex-start;
+  margin-left: 1em;
+}
+
 
 .dossier__passport-filters p {
   margin-top: 0;

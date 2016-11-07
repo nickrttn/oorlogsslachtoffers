@@ -8,8 +8,13 @@ class Dossier extends Component {
     person: PropTypes.object,
   }
 
+  toggleFilter = (event, key, value) => {
+    event.currentTarget.classList.toggle('active');
+    this.props.addFilter(key, value);
+  }
+
   render() {
-    const { addFilter, person } = this.props;
+    const { person } = this.props;
 
     return (
       <section className="dossier">
@@ -30,18 +35,37 @@ class Dossier extends Component {
             />
             <div className="dossier__passport-filters">
               <h4>{ person.name }</h4>
-              <button onClick={ () => addFilter('profession', person.profession) }>
-                <span className="dossier__label">Beroep</span>
-                <span>{ person.profession }</span>
+
+              <button onClick={ (e) => this.toggleFilter(e, 'profession', person.profession) }>
+                <svg viewBox="0 0 32 32">
+                  <path fillRule="evenodd" d="M16 0l16 16-16 16L0 16"/>
+                </svg>
+                <div className="dossier__filter-text">
+                  <span className="dossier__label">Beroep</span>
+                  <span>{ person.profession }</span>
+                </div>
               </button>
-              <button onClick={ () => addFilter('category', person.category) }>
-                <span className="dossier__label">Rol in de oorlog</span>
-                <span>{ person.category }</span>
+
+              <button onClick={ (e) => this.toggleFilter(e, 'category', person.category) }>
+                <svg viewBox="0 0 32 32">
+                  <path fillRule="evenodd" d="M16 0l16 16-16 16L0 16"/>
+                </svg>
+                <div className="dossier__filter-text">
+                  <span className="dossier__label">Rol in de oorlog</span>
+                  <span>{ person.category }</span>
+                </div>
               </button>
-              <button onClick={ () => addFilter('causeOfDeath', person.causeOfDeath) }>
-                <span className="dossier__label">Doodsoorzaak</span>
-                <span>{ person.causeOfDeath }</span>
+
+              <button onClick={ (e) => this.toggleFilter(e, 'causeOfDeath', person.causeOfDeath) }>
+                <svg viewBox="0 0 32 32">
+                  <path fillRule="evenodd" d="M16 0l16 16-16 16L0 16"/>
+                </svg>
+                <div className="dossier__filter-text">
+                  <span className="dossier__label">Doodsoorzaak</span>
+                  <span>{ person.causeOfDeath }</span>
+                </div>
               </button>
+
               { person.rank &&
                 <p>
                   <span className="dossier__label">Militaire rang</span>
