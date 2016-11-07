@@ -93,6 +93,19 @@ class Visualisation extends Component {
   addFilter = (key, value) => {
     const activeFilters = [ ...this.state.activeFilters ];
 
+    // If the filter is already there, remove it instead
+    const removeIndex = activeFilters.findIndex(filter => {
+      const filterKey = Object.keys(filter)[0];
+      return filterKey === key && filter[filterKey] === value;
+    });
+
+    if (removeIndex !== -1) {
+      activeFilters.splice(removeIndex, 1);
+      activeFilters.length > 0 ? this.updateFilters(activeFilters) : this.resetFilter();
+      this.setState({ activeFilters });
+      return;
+    }
+
     activeFilters.push({ [key]: value });
 
     this.setState({ activeFilters });
@@ -164,6 +177,7 @@ class Visualisation extends Component {
           { this.state.activePerson &&
             <Sticky stickyStyle={{ left: '60vw' }}>
               <Dossier
+                activeFilters={ this.state.activeFilters }
                 addFilter={ this.addFilter }
                 handleClose={ this.resetActivePerson}
                 person={ this.state.activePerson } />

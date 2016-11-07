@@ -31,6 +31,11 @@ class Manipulation extends Component {
     });
   }
 
+  toggleFilter = (key, value) => {
+    this.toggleFilterPanel();
+    this.props.addFilter(key, value);
+  }
+
   render() {
     return (
       <section className="manipulation">
@@ -53,48 +58,48 @@ class Manipulation extends Component {
           <section className="manipulation__filters">
             <section className="manipulation__filterbuttons">
               <h4>Begraafplaatsen</h4>
-              <button onClick={() => this.props.addFilter('graveyard', 'Buitenveldert')}>Buitenveldert</button>
-              <button onClick={() => this.props.addFilter('graveyard', 'Nieuwe Ooster')}>Nieuwe Ooster</button>
-              <button onClick={() => this.props.addFilter('graveyard', 'Gem. Begraafplaats Holysloot')}>Begraafplaats Holysloot</button>
-              <button onClick={() => this.props.addFilter('graveyard', 'Gem. Begraafplaats Sloten')}>Begraafplaats Sloten</button>
-              <button onClick={() => this.props.addFilter('graveyard', 'Huis te Vraag')}>Huis te Vraag</button>
-              <button onClick={() => this.props.addFilter('graveyard', 'Noorderbegraafplaats') }>Noorderbegraafplaats</button>
-              <button onClick={() => this.props.addFilter('graveyard', 'St. Barbara')}>St. Barbara</button>
-              <button onClick={() => this.props.addFilter('graveyard', 'Vredenhof')}>Vredenhof</button>
+              <button onClick={() => this.toggleFilter('graveyard', 'Buitenveldert')}>Buitenveldert</button>
+              <button onClick={() => this.toggleFilter('graveyard', 'Nieuwe Ooster')}>Nieuwe Ooster</button>
+              <button onClick={() => this.toggleFilter('graveyard', 'Gem. Begraafplaats Holysloot')}>Begraafplaats Holysloot</button>
+              <button onClick={() => this.toggleFilter('graveyard', 'Gem. Begraafplaats Sloten')}>Begraafplaats Sloten</button>
+              <button onClick={() => this.toggleFilter('graveyard', 'Huis te Vraag')}>Huis te Vraag</button>
+              <button onClick={() => this.toggleFilter('graveyard', 'Noorderbegraafplaats') }>Noorderbegraafplaats</button>
+              <button onClick={() => this.toggleFilter('graveyard', 'St. Barbara')}>St. Barbara</button>
+              <button onClick={() => this.toggleFilter('graveyard', 'Vredenhof')}>Vredenhof</button>
             </section>
             <section className="manipulation__filterbuttons">
               <h4>Rol in de oorlog</h4>
-              <button onClick={() => this.props.addFilter('category', 'Burger')}>Burger</button>
-              <button onClick={() => this.props.addFilter('category', 'Gevangene')}>Gevangene</button>
-              <button onClick={() => this.props.addFilter('category', 'Militair')}>Militair</button>
-              <button onClick={() => this.props.addFilter('category', 'Verzetsstrijder')}>Verzetsstrijder</button>
-              <button onClick={() => this.props.addFilter('category', 'Onbekend')}>Onbekend</button>
+              <button onClick={() => this.toggleFilter('category', 'Burger')}>Burger</button>
+              <button onClick={() => this.toggleFilter('category', 'Gevangene')}>Gevangene</button>
+              <button onClick={() => this.toggleFilter('category', 'Militair')}>Militair</button>
+              <button onClick={() => this.toggleFilter('category', 'Verzetsstrijder')}>Verzetsstrijder</button>
+              <button onClick={() => this.toggleFilter('category', 'Onbekend')}>Onbekend</button>
             </section>
             <section className="manipulation__filterbuttons">
               <h4>Doodsoorzaak</h4>
-              <button onClick={() => this.props.addFilter('causeOfDeath', 'Aanslag op Rauter')}>Aanslag op Rauter</button>
-              <button onClick={() => this.props.addFilter('causeOfDeath', 'Bombardement')}>Bombardement</button>
-              <button onClick={() => this.props.addFilter('causeOfDeath', 'Concentratiekamp')}>Concentratiekamp</button>
-              <button onClick={() => this.props.addFilter('causeOfDeath', 'Dwangarbeid')}>Dwangarbeid</button>
-              <button onClick={() => this.props.addFilter('causeOfDeath', 'Engelandvaarder')}>Engelandvaarder</button>
-              <button onClick={() => this.props.addFilter('causeOfDeath', 'Meidagen 1940')}>Meidagen 1940</button>
-              <button onClick={() => this.props.addFilter('causeOfDeath', 'Bevrijding')}>Na de bevrijding</button>
-              <button onClick={() => this.props.addFilter('causeOfDeath', 'Soesterberg')}>Soesterberg</button>
+              <button onClick={() => this.toggleFilter('causeOfDeath', 'Aanslag op Rauter')}>Aanslag op Rauter</button>
+              <button onClick={() => this.toggleFilter('causeOfDeath', 'Bombardement')}>Bombardement</button>
+              <button onClick={() => this.toggleFilter('causeOfDeath', 'Concentratiekamp')}>Concentratiekamp</button>
+              <button onClick={() => this.toggleFilter('causeOfDeath', 'Dwangarbeid')}>Dwangarbeid</button>
+              <button onClick={() => this.toggleFilter('causeOfDeath', 'Engelandvaarder')}>Engelandvaarder</button>
+              <button onClick={() => this.toggleFilter('causeOfDeath', 'Meidagen 1940')}>Meidagen 1940</button>
+              <button onClick={() => this.toggleFilter('causeOfDeath', 'Bevrijding')}>Na de bevrijding</button>
+              <button onClick={() => this.toggleFilter('causeOfDeath', 'Soesterberg')}>Soesterberg</button>
             </section>
             <section className="manipulation__filterbuttons">
               <h4>Beroep</h4>
-              <button onClick={() => this.props.addFilter('profession', 'Bakker')}>Bakker</button>
-              <button onClick={() => this.props.addFilter('profession', 'Dienstbode')}>Dienstbode</button>
-              <button onClick={() => this.props.addFilter('profession', 'Fabrieksarbeider')}>Fabrieksarbeider</button>
-              <button onClick={() => this.props.addFilter('profession', 'Kantoorbediende')}>Kantoorbediende</button>
-              <button onClick={() => this.props.addFilter('profession', 'Machine-bankbewerker')}>Machine-bankbewerker</button>
-              <button onClick={() => this.props.addFilter('profession', 'Metaal bewerker')}>Metaal bewerker</button>
-              <button onClick={() => this.props.addFilter('profession', 'Militair')}>Militair</button>
+              <button onClick={() => this.toggleFilter('profession', 'Bakker')}>Bakker</button>
+              <button onClick={() => this.toggleFilter('profession', 'Dienstbode')}>Dienstbode</button>
+              <button onClick={() => this.toggleFilter('profession', 'Fabrieksarbeider')}>Fabrieksarbeider</button>
+              <button onClick={() => this.toggleFilter('profession', 'Kantoorbediende')}>Kantoorbediende</button>
+              <button onClick={() => this.toggleFilter('profession', 'Machine-bankbewerker')}>Machine-bankbewerker</button>
+              <button onClick={() => this.toggleFilter('profession', 'Metaal bewerker')}>Metaal bewerker</button>
+              <button onClick={() => this.toggleFilter('profession', 'Militair')}>Militair</button>
             </section>
             <section className="manipulation__filterbuttons">
               <h4>Vermelding erelijst</h4>
-              <button onClick={() => this.props.addFilter('listOfHonor', 'Ja')}>Ja</button>
-              <button onClick={() => this.props.addFilter('listOfHonor', 'Nee')}>Nee</button>
+              <button onClick={() => this.toggleFilter('listOfHonor', 'Ja')}>Ja</button>
+              <button onClick={() => this.toggleFilter('listOfHonor', 'Nee')}>Nee</button>
             </section>
             <button className="close" onClick={ this.toggleFilterPanel }>&times; Sluiten</button>
           </section>
