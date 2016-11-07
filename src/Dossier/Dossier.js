@@ -3,14 +3,13 @@ import './Dossier.css';
 
 class Dossier extends Component {
   static props = {
-    person: PropTypes.object,
+    addFilter: PropTypes.func,
     handleClose: PropTypes.func,
+    person: PropTypes.object,
   }
 
   render() {
-    const { person } = this.props;
-
-
+    const { addFilter, person } = this.props;
 
     return (
       <section className="dossier">
@@ -31,15 +30,15 @@ class Dossier extends Component {
             />
             <div className="dossier__passport-filters">
               <h4>{ person.name }</h4>
-              <button>
+              <button onClick={ () => addFilter('profession', person.profession) }>
                 <span className="dossier__label">Beroep</span>
                 <span>{ person.profession }</span>
               </button>
-              <button>
+              <button onClick={ () => addFilter('category', person.category) }>
                 <span className="dossier__label">Rol in de oorlog</span>
                 <span>{ person.category }</span>
               </button>
-              <button>
+              <button onClick={ () => addFilter('causeOfDeath', person.causeOfDeath) }>
                 <span className="dossier__label">Doodsoorzaak</span>
                 <span>{ person.causeOfDeath }</span>
               </button>

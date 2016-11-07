@@ -164,6 +164,7 @@ class Visualisation extends Component {
           { this.state.activePerson &&
             <Sticky stickyStyle={{ left: '60vw' }}>
               <Dossier
+                addFilter={ this.addFilter }
                 handleClose={ this.resetActivePerson}
                 person={ this.state.activePerson } />
             </Sticky>
