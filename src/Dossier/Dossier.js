@@ -3,7 +3,8 @@ import './Dossier.css';
 
 class Dossier extends Component {
   static props = {
-    person: PropTypes.object
+    person: PropTypes.object,
+    handleClose: PropTypes.func,
   }
 
   render() {
@@ -11,7 +12,17 @@ class Dossier extends Component {
 
     return (
       <section className="dossier">
-        <h4>{ name }</h4>
+        <header className="dossier__header">
+          <h3>Dossier</h3>
+          <button
+            className="dossier__close"
+            onClick={ this.props.handleClose }>
+            &times;
+          </button>
+        </header>
+        <main>
+          <h4>{ name }</h4>
+        </main>
       </section>
     );
   }

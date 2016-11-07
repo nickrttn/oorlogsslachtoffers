@@ -132,6 +132,12 @@ class Visualisation extends Component {
     this.setState({ activePerson, data });
   }
 
+  resetActivePerson = () => {
+    const data = [ ...this.state.data ];
+    data.forEach(d => d.active = false);
+    this.setState({ activePerson: null, data });
+  }
+
   render() {
     return (
       <div className="container">
@@ -156,7 +162,9 @@ class Visualisation extends Component {
           { /* In Dossier zit de aside met persoonsgegevens en filteropties. */ }
           { this.state.activePerson &&
             <Sticky stickyStyle={{ left: '60vw' }}>
-              <Dossier person={ this.state.activePerson } />
+              <Dossier
+                handleClose={ this.resetActivePerson}
+                person={ this.state.activePerson } />
             </Sticky>
           }
         </StickyContainer>
