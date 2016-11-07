@@ -13,7 +13,7 @@ import './index.css';
 
 const Root = () => {
   return (
-    <BrowserRouter basename={ '/oorlogsslachtoffers' }>
+    <BrowserRouter>
       <div>
         <Match exactly pattern="/" component={ Introduction } />
         <Match exactly pattern="/visualisatie" component={ Visualisation } />
