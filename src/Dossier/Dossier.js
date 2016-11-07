@@ -24,7 +24,6 @@ class Dossier extends Component {
     const filters = activeFilters.map(filter => Object.keys(filter)[0]);
 
     buttons.forEach(button => button.classList.remove('active'));
-
     buttons.forEach(button => {
       filters.forEach((filter, index) => {
         if (filter === button.id && person[filter] === activeFilters[index][filter]) {
