@@ -65,6 +65,7 @@ class Visualisation extends Component {
       graveyard: person.begraafplaats,
       listOfHonor: person.erelijst === 'Ja' ? true : false ,
       story: person.verhaal ? person.verhaal : false,
+      rank: person.categorie === 'Militair' ? person.rang : false,
     }));
 
     this.setState({ data });

@@ -6,7 +6,7 @@
   display: flex;
   flex-flow: column nowrap;
   justify-content: flex-start;
-  padding: 2vw 4vw;
+  padding: 0 3vw 2vw 2vw;
 
   color: white;
   background: rgba(0, 0, 0, 0.3);
@@ -17,6 +17,7 @@
   flex-flow: row nowrap;
   align-items: center;
   justify-content: space-between;
+  padding: 1.25em 0 3em;
 }
 
 .dossier__header h3 {
@@ -29,4 +30,59 @@
   border: 0;
   font-size: 2em;
   color: #C0BEBB;
+}
+
+.dossier__passport {
+  background: #332D25;
+  margin-left: 1vw;
+  padding: .5vh 2vw;
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.dossier__photo {
+  max-height: 12.5em;
+  max-width: 9.375em;
+  height: auto;
+  width: auto;
+  margin-left: -3vw;
+  margin-top: -3vh;
+}
+
+.dossier__passport-filters {
+  display: flex;
+  flex: 1;
+  flex-flow: column nowrap;
+  align-items: flex-start;
+  margin-left: 1.5vw;
+}
+
+.dossier__passport-filters p,
+.dossier__passport-filters button {
+  display: flex;
+  flex-flow: column nowrap;
+  margin-bottom: 1em;
+}
+
+.dossier__passport-filters button {
+  appearance: none;
+  background: 0;
+  border: 0;
+  padding: 0;
+}
+
+.dossier__passport-filters p {
+  margin-top: 0;
+}
+
+.dossier__label {
+  color: rgb(251, 212, 119);
+  font-size: .8em;
+  font-family: 'Avenir', --apple-system, sans-serif;
+  margin-bottom: .25em;
+}
+
+.dossier__label ~ span {
+  font-size: 1em;
+  color: white;
 }

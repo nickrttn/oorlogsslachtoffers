@@ -8,7 +8,9 @@ class Dossier extends Component {
   }
 
   render() {
-    const { name } = { ...this.props.person }
+    const { person } = this.props;
+
+
 
     return (
       <section className="dossier">
@@ -21,7 +23,34 @@ class Dossier extends Component {
           </button>
         </header>
         <main>
-          <h4>{ name }</h4>
+          <section className="dossier__passport">
+            <img
+              className="dossier__photo"
+              src={ process.env.PUBLIC_URL + '/images/' + person.id + '.jpg' }
+              alt={ `Foto van ${person.name}` }
+            />
+            <div className="dossier__passport-filters">
+              <h4>{ person.name }</h4>
+              <button>
+                <span className="dossier__label">Beroep</span>
+                <span>{ person.profession }</span>
+              </button>
+              <button>
+                <span className="dossier__label">Rol in de oorlog</span>
+                <span>{ person.category }</span>
+              </button>
+              <button>
+                <span className="dossier__label">Doodsoorzaak</span>
+                <span>{ person.causeOfDeath }</span>
+              </button>
+              { person.rank &&
+                <p>
+                  <span className="dossier__label">Militaire rang</span>
+                  <span>{ person.rank }</span>
+                </p>
+              }
+            </div>
+          </section>
         </main>
       </section>
     );
