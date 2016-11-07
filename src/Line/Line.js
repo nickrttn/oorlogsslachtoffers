@@ -33,14 +33,14 @@ class Line extends Component {
         onMouseOver={ (event) => showTooltip(event, d) }
         onMouseOut={ () => hideTooltip() } >
         <rect className="line__rect" x={ x1 } y={ y - 10 } width={ x2 - x1 } height="20px" />
-        <image x={ x1 - 15 } y={ y -5 } height="10" preserveAspectRatio="xMinYMid" xlinkHref={ star } />
+        <image x={ x1 - 15 } y={ y -5 } height="10" width="11.25px" preserveAspectRatio="xMinYMid" xlinkHref={ star } />
           <Motion
             defaultStyle={{ x2: x1 }}
             style={{ x2: spring(x2, {stiffness: 50, damping: 20}) }}>
             { style => <line className="line" x1={ x1 } x2={ style.x2 } y1={ y } y2={ y } style={{ opacity: d.active || d.activeInFilter ? 1 : 0.3, strokeWidth: d.active ? 4 : 2, stroke: d.active ? '#fbd477' : '#fff' }} />
             }
           </Motion>
-        <image x={ x2 + 6 } y={ y - 5 } height="10" preserveAspectRatio="xMinYMid" xlinkHref={ cross } />
+        <image x={ x2 + 6 } y={ y - 5 } height="10" width="6.88px" preserveAspectRatio="xMinYMid" xlinkHref={ cross } />
       </g>
     );
   }
