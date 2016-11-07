@@ -36,6 +36,15 @@
   z-index: 1;
 }
 
+.manipulation__filters .close {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  margin-left: auto;
+  font-size: 1em;
+  color: #fff;
+}
+
 .manipulation__filterbuttons {
   display: flex;
   flex-flow: column nowrap;
@@ -84,6 +93,7 @@
 
 .activeFilters li {
   margin-right: 1em;
+  color: white;
 }
 
 .activeFilters li:last-of-type {
@@ -100,13 +110,11 @@
   border-radius: .25em;
 }
 
-.close {
-  appearance: none;
+.activeFilters .remove {
   border: 0;
-  background: transparent;
-  margin-left: auto;
-  font-size: 1em;
-  color: #fff;
+  background: 0;
+  color: rgba(210, 0, 0, 1);
+  padding: 0.25em;
 }
 
 .activeFilters .reset {

@@ -57,11 +57,11 @@ class Visualisation extends Component {
       placeOfDeath: person.sterfteplek,
       countryOfDeath: person.sterfteland,
       profession: person.beroep,
-      monument: 'Ja' ? true : false,
+      monument: person.monument === 'Ja' ? true : false,
       category: person.categorie,
       victimType: person.slachtoffer,
       graveyard: person.begraafplaats,
-      listOfHonor: person.erelijst,
+      listOfHonor: person.erelijst === 'Ja' ? true : false ,
       story: person.verhaal ? person.verhaal : false,
     }));
 
@@ -69,18 +69,40 @@ class Visualisation extends Component {
     this.setState({ data, activePerson: data[0] });
   }
 
+  removeFilter = (key, value) => {
+    const activeFilters = [ ...this.state.activeFilters ];
+
+    const removeIndex = activeFilters.findIndex(filter => {
+      const filterKey = Object.keys(filter)[0];
+      return filterKey === key && filter[filterKey] === value;
+    });
+
+    activeFilters.splice(removeIndex, 1);
+    activeFilters.length > 0 ? this.updateFilters(activeFilters) : this.resetFilter();
+    this.setState({ activeFilters });
+  }
+
   resetFilter = () => {
     const data = [ ...this.state.data ];
     data.forEach(d => d.activeInFilter = false);
-
     this.setState({ activeFilters: [], data });
   }
 
-  filterData = (key, value) => {
-    const data = [ ...this.state.data ];
+  addFilter = (key, value) => {
     const activeFilters = [ ...this.state.activeFilters ];
 
     activeFilters.push({ [key]: value });
+
+    this.setState({ activeFilters });
+    this.updateFilters(activeFilters);
+  }
+
+  sortData = (key) => {
+
+  }
+
+  updateFilters = (activeFilters) => {
+    const data = [ ...this.state.data ];
 
     data.forEach(d => {
       let falseHits = 0;
@@ -95,11 +117,7 @@ class Visualisation extends Component {
       d.activeInFilter = falseHits === 0;
     });
 
-    this.setState({ activeFilters, data });
-  }
-
-  sortData = (key) => {
-
+    this.setState({ data });
   }
 
   setActivePerson = (id) => {
@@ -121,7 +139,11 @@ class Visualisation extends Component {
         </header>
 
         { /* In Manipulation zitten filters, sorteeropties en de brush. */ }
-        <Manipulation activeFilters={ this.state.activeFilters } filterData={ this.filterData } resetFilter={ this.resetFilter } />
+        <Manipulation
+          activeFilters={ this.state.activeFilters }
+          addFilter={ this.addFilter }
+          resetFilter={ this.resetFilter }
+          removeFilter={ this.removeFilter } />
 
         <main className="visualisation">
           { /* In Lines zit de daadwerkelijke visualisatie. */ }
