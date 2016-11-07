@@ -37,10 +37,10 @@ class Manipulation extends Component {
         <div className="activeFilters">
           <p>Filter op</p>
           <ul className="activeFilters">
-            { this.renderActiveFilters() }
             <li className="addFilter">
               <button onClick={ this.toggleFilterPanel }>Filter toevoegen</button>
             </li>
+            { this.renderActiveFilters() }
             { this.props.activeFilters.length > 0 &&
               <li className="resetFilters">
                 <button className="reset" onClick={ this.props.resetFilter }>Verwijder alle filters</button>
@@ -96,7 +96,7 @@ class Manipulation extends Component {
               <button onClick={() => this.props.addFilter('listOfHonor', 'Ja')}>Ja</button>
               <button onClick={() => this.props.addFilter('listOfHonor', 'Nee')}>Nee</button>
             </section>
-            <button className="close" onClick={ this.toggleFilterPanel }>&times; Filters sluiten</button>
+            <button className="close" onClick={ this.toggleFilterPanel }>&times; Sluiten</button>
           </section>
         }
       </section>

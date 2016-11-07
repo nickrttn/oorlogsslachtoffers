@@ -1,9 +1,12 @@
 .dossier {
   width: 40vw;
+  height: 100vh;
+  margin-top: 2px;
 
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
 
   color: white;
+  background: rgba(0, 0, 0, 0.3);
 }

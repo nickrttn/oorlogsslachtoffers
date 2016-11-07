@@ -1,5 +1,6 @@
 // Modules
 import React, { Component } from 'react';
+import { StickyContainer, Sticky } from 'react-sticky';
 import { parse } from 'papaparse';
 import moment from 'moment';
 import 'moment/locale/nl';
@@ -15,7 +16,8 @@ import './Visualisation.css';
 class Visualisation extends Component {
   state = {
     data: [],
-    activePerson: {},
+    filteredData: null,
+    activePerson: null,
     activeFilters: [],
   }
 
@@ -65,8 +67,7 @@ class Visualisation extends Component {
       story: person.verhaal ? person.verhaal : false,
     }));
 
-    data[0].active = true;
-    this.setState({ data, activePerson: data[0] });
+    this.setState({ data });
   }
 
   removeFilter = (key, value) => {
@@ -145,13 +146,20 @@ class Visualisation extends Component {
           resetFilter={ this.resetFilter }
           removeFilter={ this.removeFilter } />
 
-        <main className="visualisation">
+        <StickyContainer className="visualisation">
           { /* In Lines zit de daadwerkelijke visualisatie. */ }
-          <Lines data={ this.state.data } handleLineClick={ this.setActivePerson } />
+          <Lines
+            data={ this.state.filteredData || this.state.data }
+            handleLineClick={ this.setActivePerson }
+            dossierActive={ !!this.state.activePerson } />
 
           { /* In Dossier zit de aside met persoonsgegevens en filteropties. */ }
-          <Dossier person={ this.state.activePerson } />
-        </main>
+          { this.state.activePerson &&
+            <Sticky stickyStyle={{ left: '60vw' }}>
+              <Dossier person={ this.state.activePerson } />
+            </Sticky>
+          }
+        </StickyContainer>
       </div>
     );
   }

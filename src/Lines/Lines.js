@@ -15,11 +15,13 @@ import './Lines.css';
 class Lines extends Component {
   static props = {
     data: PropTypes.array.isRequired,
+    dossierActive: PropTypes.bool.isRequired,
     handleLineClick: PropTypes.func.isRequired,
   }
 
   state = {
     tooltip: false,
+    width: '100%',
   }
 
   componentDidMount() {
@@ -32,7 +34,21 @@ class Lines extends Component {
     const axis = axisBottom(xScale).ticks(15);
     select(this._axis).call(axis);
 
-    this.setState({ x: xScale });
+    console.log('cDM');
+
+    this.setState({ x: xScale, width: bbox.width });
+  }
+
+  componentDidUpdate() {
+    const { width, x } = this.state;
+    const bbox = this._visualisation.getBoundingClientRect();
+
+    if (!(width === bbox.width)) {
+      x.range([0, bbox.width]);
+      const axis = axisBottom(x).ticks(15);
+      select(this._axis).call(axis);
+      this.setState({ width: bbox.width, x });
+    }
   }
 
   renderWarRect = () => {
@@ -74,11 +90,11 @@ class Lines extends Component {
   }
 
   render() {
-    const { data, handleLineClick } = this.props;
+    const { data, dossierActive, handleLineClick } = this.props;
     const { tooltip, x } = this.state;
 
     return (
-      <section className="lines">
+      <section className="lines" style={{ maxWidth: dossierActive ? '60vw' : '100vw' }}>
         <Legend />
         <section
           ref={ ref => this._visualisation = ref }
@@ -95,7 +111,7 @@ class Lines extends Component {
                 handleClick={ handleLineClick } />
             )}
           </svg>
-          <svg className="axis" width='60vw' height="50px">
+          <svg className="axis" width='100%' height="50px">
             <g ref={ ref => this._axis = ref }
               transform="translate(0, 10)"></g>
           </svg>
