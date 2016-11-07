@@ -5,6 +5,8 @@ class Manipulation extends Component {
   static props = {
     activeFilters: PropTypes.array.isRequired,
     addFilter: PropTypes.func.isRequired,
+    handleSort: PropTypes.func.isRequired,
+    activeSort: PropTypes.string,
     resetFilter: PropTypes.func.isRequired,
     removeFilter: PropTypes.func.isRequired,
   }
@@ -39,6 +41,16 @@ class Manipulation extends Component {
   render() {
     return (
       <section className="manipulation">
+        <div className="manipulation__sorting">
+          <p>Sorteer op</p>
+          <select className="sorting__select" defaultValue onInput={ this.props.handleSort }>
+            <option value disabled>Kies een optie</option>
+            <option value="birthdate">Geboortedatum</option>
+            <option value="dateOfDeath">Sterfdatum</option>
+            <option value="age-ascend">Jong &rarr; Oud</option>
+            <option value="age-descend">Oud &rarr; Jong</option>
+          </select>
+        </div>
         <div className="activeFilters">
           <p>Filter op</p>
           <ul className="activeFilters">

@@ -21,6 +21,26 @@
   background: linear-gradient(to left, transparent 0%, rgba(255, 255, 255, 0.6) 20%, rgba(255, 255, 255, 0.6) 80%, transparent 100%);
 }
 
+.manipulation__sorting {
+  margin: 0 0 0 1vw;
+}
+
+.manipulation__sorting p {
+  margin-bottom: 0.5em;
+  color: #C0BEBB;
+}
+
+.sorting__select {
+  appearance: none;
+  display: block;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid white;
+  font-size: 1em;
+  color: white;
+  padding: .5em 1em;
+  border-radius: .25em;
+}
+
 .manipulation__filters {
   display: flex;
   align-items: baseline;

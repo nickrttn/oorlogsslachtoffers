@@ -51,6 +51,7 @@ class Visualisation extends Component {
       activeInFilter: false,
       name: person.naam,
       sex: person.geslacht,
+      age: moment(person.sterftedatum, 'YYYY-MM-DD').diff(moment(person.geboortedatum, 'YYYY-MM-DD'), 'years'),
       birthdate: moment(person.geboortedatum, 'YYYY-MM-DD'),
       birthplace: person.geboorteplek,
       birthcountry: person.geboorteland,
@@ -112,8 +113,51 @@ class Visualisation extends Component {
     this.updateFilters(activeFilters);
   }
 
-  sortData = (key) => {
+  sortData = (event, key) => {
+    const data = [ ...this.state.data ];
 
+    switch(event.target.value) {
+      case('birthdate'):
+        data.sort((a, b) => {
+          if (a.birthdate.isBefore(b.birthdate)) {
+            return -1;
+          } else if (a.birthdate.isSame(b.birthdate)) {
+            return 0;
+          } else if (b.birthdate.isBefore(a.birthdate)) {
+            return 1;
+          }
+
+          return 0;
+        });
+        break;
+      case('dateOfDeath'):
+        data.sort((a, b) => {
+          if (a.dateOfDeath.isBefore(b.dateOfDeath)) {
+            return -1;
+          } else if (a.dateOfDeath.isSame(b.dateOfDeath)) {
+            return 0;
+          } else if (b.dateOfDeath.isBefore(a.dateOfDeath)) {
+            return 1;
+          }
+
+          return 0;
+        });
+        break;
+      case('age-ascend'):
+        data.sort((a, b) => {
+          return a.age - b.age;
+        });
+        break;
+      case('age-descend'):
+        data.sort((a, b) => {
+          return b.age - a.age;
+        });
+        break;
+      default:
+        return;
+    }
+
+    this.setState({ data });
   }
 
   updateFilters = (activeFilters) => {
@@ -163,6 +207,7 @@ class Visualisation extends Component {
         <Manipulation
           activeFilters={ this.state.activeFilters }
           addFilter={ this.addFilter }
+          handleSort={ this.sortData }
           resetFilter={ this.resetFilter }
           removeFilter={ this.removeFilter } />
 
