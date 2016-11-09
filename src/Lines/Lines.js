@@ -9,6 +9,7 @@ import 'moment/locale/nl';
 import Legend from '../Legend/Legend';
 import Line from '../Line/Line';
 import Tooltip from '../Tooltip/Tooltip';
+import IntroductionAnimation from '../IntroductionAnimation/IntroductionAnimation';
 
 // Assets
 import './Lines.css';
@@ -18,6 +19,9 @@ class Lines extends Component {
     data: PropTypes.array.isRequired,
     dossierActive: PropTypes.bool.isRequired,
     handleLineClick: PropTypes.func.isRequired,
+    toggleIntroAnimation: PropTypes.func.isRequired,
+    introAnimationFinished: PropTypes.bool.isRequired,
+    setVictorActive: PropTypes.func.isRequired,
   }
 
   state = {
@@ -103,42 +107,47 @@ class Lines extends Component {
 
     return (
       <section className="lines" style={{ maxWidth: dossierActive ? '60vw' : '100vw' }}>
-        <Legend />
+        { this.props.introAnimationFinished && <Legend /> }
         <section
           ref={ ref => this._visualisation = ref }
           className="lines__visualisation"
         >
-          <svg width="100%" height={ (data.length * 20) + 30 }>
-            { data.length > 0 && this.renderWarRect() }
-            { data.length > 0 &&
-              <StaggeredMotion
-                defaultStyles={ data.map(d => ({ percent: x(d.birthdate) / x(d.dateOfDeath) })) }
-                styles={ (previousStyles) => previousStyles.map((prev, i) => {
-                  if (i === 0) {
-                    return { percent: spring(1) }
-                  } else {
-                    const lastLinePreviousPercent = previousStyles[i - 1].percent;
-                    const thisLinePreviousPercent = previousStyles[i].percent;
-                    return { percent: lastLinePreviousPercent > 0.7 ? spring(1, { stiffness: 200, damping: 20 }) : spring(thisLinePreviousPercent) }
+          { !this.props.introAnimationFinished && data.length > 0 &&
+            <IntroductionAnimation victor={ data[0] } handleDone={ this.props.toggleIntroAnimation } setVictorActive={ this.props.setVictorActive } />
+          }
+          { this.props.introAnimationFinished &&
+            <svg width="100%" height={ (data.length * 20) + 30 }>
+              { data.length > 0 && this.renderWarRect() }
+              { data.length > 0 &&
+                <StaggeredMotion
+                  defaultStyles={ data.map(d => ({ percent: x(d.birthdate) / x(d.dateOfDeath) })) }
+                  styles={ (previousStyles) => previousStyles.map((prev, i) => {
+                    if (i === 0) {
+                      return { percent: spring(1) }
+                    } else {
+                      const lastLinePreviousPercent = previousStyles[i - 1].percent;
+                      const thisLinePreviousPercent = previousStyles[i].percent;
+                      return { percent: lastLinePreviousPercent > 0.7 ? spring(1, { stiffness: 200, damping: 20 }) : spring(thisLinePreviousPercent) }
+                    }
+                  }) }
+                >
+                  { interpolatingStyles =>
+                    <g>
+                    { interpolatingStyles.map((style, i) =>
+                      <Line
+                        key={ data[i].id } d={ data[i] } i={ i } y={ 10 + i * 20 }
+                        x1={ x(data[i].birthdate) } x2={ x(data[i].dateOfDeath) * style.percent }
+                        hideTooltip={ this.hideTooltip }
+                        showTooltip={ this.showTooltip }
+                        handleClick={ handleLineClick } />
+                    )}
+                    </g>
                   }
-                }) }
-              >
-                { interpolatingStyles =>
-                  <g>
-                  { interpolatingStyles.map((style, i) =>
-                    <Line
-                      key={ data[i].id } d={ data[i] } i={ i } y={ 10 + i * 20 }
-                      x1={ x(data[i].birthdate) } x2={ x(data[i].dateOfDeath) * style.percent }
-                      hideTooltip={ this.hideTooltip }
-                      showTooltip={ this.showTooltip }
-                      handleClick={ handleLineClick } />
-                  )}
-                  </g>
-                }
-              </StaggeredMotion>
-            }
-          </svg>
-          <svg className="axis" width='100%' height="50px">
+                </StaggeredMotion>
+              }
+            </svg>
+          }
+          <svg className="axis" width='100%' height="50px" opacity={ this.props.introAnimationFinished ? 1 : 0 }>
             <g ref={ ref => this._axis = ref }
               transform="translate(0, 10)"></g>
           </svg>

@@ -37,7 +37,7 @@ class Line extends Component {
         <rect className="line__rect" x={ x1 } y={ y - 10 } width={ rectWidth } height="20px" />
         <image x={ x1 - 18 } y={ y - 6 } height="12" width="13.5" preserveAspectRatio="xMinYMid" xlinkHref={ star } />
         <line className="line" x1={ x1 } x2={ x2 } y1={ y } y2={ y } style={{ opacity: d.active || d.activeInFilter ? 1 : 0.3, strokeWidth: d.active ? 4 : 2, stroke: d.active ? '#fbd477' : '#fff' }} />
-        <image x={ x2 + 8 } y={ y - 6 } height="12" width="8.256" preserveAspectRatio="xMinYMid" xlinkHref={ d.monument ? monument : cross } />
+        <image x={ x2 + 9 } y={ y - 7 } height="14" width="9.632" preserveAspectRatio="xMinYMid" xlinkHref={ d.monument ? monument : cross } />
       </g>
     );
   }

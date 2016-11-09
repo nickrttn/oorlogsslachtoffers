@@ -1,6 +1,7 @@
 .line {
   stroke-width: 2;
   stroke: white;
+  stroke-linecap: round;
 }
 
 .line__rect {

@@ -21,6 +21,7 @@ class Visualisation extends Component {
     filteredData: null,
     activePerson: null,
     activeFilters: [],
+    introAnimationFinished: false,
   }
 
   componentDidMount() {
@@ -232,6 +233,10 @@ class Visualisation extends Component {
     this.setState({ activePerson: null, data });
   }
 
+  finishIntroAnimation = () => {
+    this.setState({ introAnimationFinished: true });
+  }
+
   render() {
     return (
       <div className="container">
@@ -239,32 +244,36 @@ class Visualisation extends Component {
           <h1 className="header__title">Oorlogsgraven <span>in Amsterdam</span></h1>
         </header>
 
-        { /* In Manipulation zitten filters, sorteeropties en de brush. */ }
-        <Manipulation
-          activeFilters={ this.state.activeFilters }
-          addFilter={ this.addFilter }
-          handleSort={ this.sortData }
-          resetFilter={ this.resetFilter }
-          removeFilter={ this.removeFilter } />
+        { this.state.introAnimationFinished &&
+          <Manipulation
+            activeFilters={ this.state.activeFilters }
+            addFilter={ this.addFilter }
+            handleSort={ this.sortData }
+            resetFilter={ this.resetFilter }
+            removeFilter={ this.removeFilter } />
+        }
 
         <StickyContainer className="visualisation">
           { /* In Lines zit de daadwerkelijke visualisatie. */ }
           <Lines
             data={ this.state.filteredData || this.state.data }
             handleLineClick={ this.setActivePerson }
-            dossierActive={ !!this.state.activePerson } />
+            dossierActive={ !!this.state.activePerson }
+            toggleIntroAnimation={ this.finishIntroAnimation }
+            introAnimationFinished={ this.state.introAnimationFinished }
+            setVictorActive={ this.setActivePerson } />
 
           { /* In Dossier zit de aside met persoonsgegevens en filteropties. */ }
-          { this.state.activePerson &&
-            <Sticky stickyStyle={{ left: '60vw' }}>
+          <Sticky stickyStyle={{ left: '60vw' }}>
+            { this.state.activePerson &&
               <Dossier
                 activeFilters={ this.state.activeFilters }
                 addFilter={ this.addFilter }
                 handleClose={ this.resetActivePerson}
                 toggleEvent={ this.setEvent }
                 person={ this.state.activePerson } />
-            </Sticky>
-          }
+            }
+          </Sticky>
         </StickyContainer>
 
         { this.state.event &&

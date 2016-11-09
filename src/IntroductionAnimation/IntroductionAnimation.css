@@ -1,0 +1,24 @@
+.introduction-animation {
+  width: 100%;
+}
+
+.introduction-animation .name {
+  fill: white;
+}
+
+.introduction-animation .label {
+  fill: rgb(251, 212, 119);
+  text-transform: uppercase;
+  font-family: Avenir, --apple-system, sans-serif;
+  letter-spacing: 1px;
+}
+
+.introduction-animation .info {
+  fill: white;
+}
+
+.introduction-animation .lifeline {
+  stroke: rgb(251, 212, 119);
+  stroke-width: 4;
+  stroke-linecap: round;
+}

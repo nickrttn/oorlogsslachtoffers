@@ -1,6 +1,8 @@
 .dossier {
   width: 40vw;
   height: 100vh;
+  max-height: 100vh;
+  overflow-y: scroll;
   margin-top: 2px;
 
   display: flex;
