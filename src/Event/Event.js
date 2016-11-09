@@ -43,14 +43,16 @@ class Event extends Component {
   }
 
   render() {
-    const { handleClose } = this.props;
+    const { handleClose, event } = this.props;
     const { data } = this.state;
 
     return !data ? null : (
       <section className="event">
-        <button className="event__close" onClick={ handleClose }>&times;</button>
-        <h2 className="event__title">{ data.titel }</h2>
-        <p className="event__story">{ data.verhaal }</p>
+        <section className="event__container" style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/images/events/${event}.png)` }}>
+          <button className="event__close" onClick={ handleClose }>&times;</button>
+          <h2 className="event__title">{ data.titel }</h2>
+          <p className="event__story">{ data.verhaal }</p>
+        </section>
       </section>
     );
   }

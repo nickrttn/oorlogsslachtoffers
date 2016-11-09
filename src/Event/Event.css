@@ -4,18 +4,26 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 999;
 
   display: flex;
   flex-flow: column nowrap;
-  align-items: flex-start;
 
-  padding: 5vw;
   background: url(./clouds.png) no-repeat center,
               radial-gradient(circle, rgba(251, 212, 119, 0.1) 0%, rgba(63, 55, 39, 0) 40%),
               #29241C;
   background-blend-mode: overlay, normal, normal;
   background-size: cover, contain, cover;
+}
+
+.event__container {
+  display: flex;
+  flex-flow: column nowrap;
+  padding: 5vh 5vw;
+  min-width: 100vw;
+  min-height: 100vh;
+  background-size: 50vw;
+  background-position: 35vw 20vh;
+  background-repeat: no-repeat;
 }
 
 .event__close {

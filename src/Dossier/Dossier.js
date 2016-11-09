@@ -76,7 +76,7 @@ class Dossier extends Component {
             <div className="dossier__imagery">
               <img
                 className="dossier__photo"
-                src={ process.env.PUBLIC_URL + '/images/' + person.id + '.jpg' }
+                src={ process.env.PUBLIC_URL + '/images/people/' + person.id + '.jpg' }
                 alt={ `Foto van ${person.name}` }
               />
               <div className="dossier__awards">
