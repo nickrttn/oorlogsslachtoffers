@@ -137,7 +137,7 @@ class Lines extends Component {
                       <Line
                         key={ data[i].id } d={ data[i] } i={ i } y={ 10 + i * 20 }
                         x1={ x(data[i].birthdate) } x2={ x(data[i].dateOfDeath) * style.percent }
-                        // hideTooltip={ this.hideTooltip }
+                        hideTooltip={ this.hideTooltip }
                         showTooltip={ this.showTooltip }
                         handleClick={ handleLineClick } />
                     )}
