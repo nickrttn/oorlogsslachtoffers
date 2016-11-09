@@ -58,7 +58,6 @@
   display: flex;
   align-items: baseline;
   justify-content: flex-start;
-
   background: #332D25;
   position: absolute;
   bottom: calc(-80vh - 2px);
@@ -69,13 +68,21 @@
   z-index: 1;
 }
 
-.manipulation__filters .close {
+.manipulation__filterbuttons-close {
   appearance: none;
   border: 0;
   background: transparent;
   margin-left: auto;
-  font-size: 1.25em;
+  font-size: 2em;
   color: rgba(255, 255, 255, 0.6);
+}
+
+.manipulation__filterbuttons-close:hover {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.manipulation__filterbuttons-close:active {
+  color: rgba(255, 255, 255, 1);
 }
 
 .manipulation__filterbuttons {
@@ -90,6 +97,7 @@
 }
 
 .manipulation__filterbuttons h4 {
+  font-size: 1.5em;
   margin-bottom: 1.5em;
 }
 
@@ -100,30 +108,36 @@
   color: white;
   font-size: 1.2em;
   margin-bottom: .75em;
+  padding: 0;
   text-align: left;
   font-family: 'Avenir', --apple-system, sans-serif;
 }
 
 .manipulation__filterbuttons button:hover {
   text-decoration: underline;
+  text-decoration-color: #FBD477;
 }
 
-.activeFilters {
+.manipulation__filterbuttons button:active {
+  color: #FBD477;
+}
+
+.manipulation__active-filters {
   display: inline-flex;
   flex-flow: row nowrap;
   margin: 0 1.5em;
   color: #C0BEBB;
 }
 
-.activeFilters p {
+.manipulation__active-filters p {
   margin-bottom: .5em;
 }
 
-.activeFilters__icon {
+.manipulation__active-filters__icon {
   margin-right: .5em;
 }
 
-.activeFilters ul {
+.manipulation__active-filters ul {
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
@@ -132,16 +146,16 @@
   margin: 0;
 }
 
-.activeFilters li {
+.manipulation__active-filters li {
   margin-right: 1em;
   color: white;
 }
 
-.activeFilters li:last-of-type {
+.manipulation__active-filters li:last-of-type {
   margin-right: 0em;
 }
 
-.activeFilters button {
+.manipulation__active-filters button {
   font-family: Avenir, --apple-system, sans-serif;
   appearance: none;
   border: 0;
@@ -152,12 +166,26 @@
   border-radius: .25em;
 }
 
-.activeFilter button {
+.manipulation__active-filter button {
   padding: .5em 1em;
+  transition: all 80ms ease-in-out;
   background: rgba(255, 255, 255, 0.1);
 }
 
-.addFilter span {
+.manipulation__active-filter button:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.manipulation__active-filter button:active {
+  color: #333;
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.manipulation__active-filter-remove {
+  margin-left: .5em;
+}
+
+.manipulation__add-filter span {
   display: inline-block;
   transform: rotate(0.25turn);
   margin-left: .25em;
@@ -165,15 +193,16 @@
   color: rgba(251, 212, 119, 1);
 }
 
-.activeFilters .remove {
-  border: 0;
-  background: 0;
-  color: rgba(210, 0, 0, 1);
-  padding: 0.25em;
-}
-
-.activeFilters .reset {
+.manipulation__active-filters-reset button {
   padding: .5em 1em;
   border: 0;
   background: rgba(210, 0, 0, 0.1);
+}
+
+.manipulation__active-filters-reset button:hover {
+  background: rgba(210, 0, 0, 0.3);
+}
+
+.manipulation__active-filters-reset button:active {
+  background: rgba(210, 0, 0, 0.8);
 }

@@ -152,6 +152,14 @@
   fill: rgb(251, 212, 119);
 }
 
+.dossier__filter-button:hover svg {
+  fill: rgba(255, 255, 255, 0.6);
+}
+
+.dossier__filter-button.active:hover svg {
+  fill: rgb(251, 212, 119);
+}
+
 .dossier__filter-text {
   display: flex;
   flex-flow: column nowrap;
@@ -164,6 +172,9 @@
   line-height: 1.25;
 }
 
+.dossier__filter-button:hover .dossier__filter-text span:last-of-type {
+  text-decoration: underline;
+}
 
 .dossier__passport-filters p {
   margin-top: 1em;
@@ -214,14 +225,28 @@
 }
 
 .dossier__event-toggle {
+  font-family: Avenir, sans-serif;
+  font-weight: 800;
+  font-size: 1.2em;
   margin-left: 1em;
   border: 2px solid white;
   color: white;
-  width: 2em;
-  height: 2em;
-  line-height: 1.2;
+  width: 1.5em;
+  height: 1.5em;
+  line-height: 1.35em;
   background: transparent;
   border-radius: 50%;
+  transition: all 80ms ease-in-out;
+}
+
+.dossier__event-toggle:hover {
+  color: #FBD477;
+  border-color: #FBD477;
+}
+
+.dossier__event-toggle:active {
+  color: #1a1611;
+  background: #FBD477;
 }
 
 .dossier__label {

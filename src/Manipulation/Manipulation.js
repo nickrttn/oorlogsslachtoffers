@@ -32,8 +32,11 @@ class Manipulation extends Component {
     this.props.activeFilters.map((filter, index) => {
       const key = Object.keys(filter)[0];
       return (
-        <li className="activeFilter" key={ `${key}-${index}` }>
-          <button onClick={ () => this.props.removeFilter(key, filter[key]) }>{ moment.isMoment(filter[key]) ? filter[key].format('D MMMM YYYY') : filter[key] } <span className="remove">&times;</span></button>
+        <li className="manipulation__active-filter" key={ `${key}-${index}` }>
+          <button onClick={ () => this.props.removeFilter(key, filter[key]) }>
+            { moment.isMoment(filter[key]) ? filter[key].format('D MMMM YYYY') : typeof filter[key] === 'boolean' ? 'Ja' : 'Nee' }
+            <span className="manipulation__active-filter-remove">&times;</span>
+          </button>
         </li>
       );
     });
@@ -57,16 +60,16 @@ class Manipulation extends Component {
           </select>
         </div>
 
-        <div className="activeFilters">
-          <img src={ filterIcon } className="activeFilters__icon" alt="Sorteren" />
+        <div className="manipulation__active-filters">
+          <img src={ filterIcon } className="manipulation__active-filters-icon" alt="Sorteren" />
           <ul>
-            <li className="addFilter">
+            <li className="manipulation__add-filter">
               <button onClick={ this.toggleFilterPanel }>Filters <span>&#8227;</span></button>
             </li>
             { this.renderActiveFilters() }
             { this.props.activeFilters.length > 0 &&
-              <li className="resetFilters">
-                <button className="reset" onClick={ this.props.resetFilter }>Verwijder alle filters</button>
+              <li className="manipulation__active-filters-reset">
+                <button onClick={ this.props.resetFilter }>Verwijder alle filters</button>
               </li>
             }
           </ul>
@@ -116,10 +119,10 @@ class Manipulation extends Component {
             </section>
             <section className="manipulation__filterbuttons">
               <h4>Vermelding erelijst</h4>
-              <button onClick={() => this.toggleFilter('listOfHonor', 'Ja')}>Ja</button>
-              <button onClick={() => this.toggleFilter('listOfHonor', 'Nee')}>Nee</button>
+              <button onClick={() => this.toggleFilter('listOfHonor', true)}>Ja</button>
+              <button onClick={() => this.toggleFilter('listOfHonor', false)}>Nee</button>
             </section>
-            <button className="close" onClick={ this.toggleFilterPanel }>&times; Sluiten</button>
+            <button className="manipulation__filterbuttons-close" onClick={ this.toggleFilterPanel }>&times;</button>
           </section>
         }
       </section>

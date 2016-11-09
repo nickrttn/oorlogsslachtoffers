@@ -66,7 +66,7 @@ class Visualisation extends Component {
       category: person.categorie,
       victimType: person.slachtoffer,
       graveyard: person.begraafplaats,
-      listOfHonor: person.erelijst === 'Ja' ? true : false ,
+      listOfHonor: person.erelijst === 'Ja' ? true : false,
       story: person.verhaal ? person.verhaal : false,
       event: person.verhaaldood === 'Onbekend' ? false : person.verhaaldood,
       rank: person.categorie === 'Militair' ? person.rang : false,
@@ -196,6 +196,10 @@ class Visualisation extends Component {
             if (!d[filterKey].isSame(filter[filterKey])) {
               falseHits++;
             }
+          }
+        } else if (typeof d[filterKey] === 'boolean') {
+          if (d[filterKey] === filter[filterKey]) {
+            falseHits++;
           }
         } else if (!d[filterKey].includes(filter[filterKey])) {
           falseHits++;

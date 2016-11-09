@@ -21,8 +21,6 @@ class IntroductionAnimation extends Component {
     const svg = select(this._introAnimation);
     const canvas = this._introAnimation.getBoundingClientRect();
 
-    console.log(victor);
-
     const x = scaleTime()
       .domain([moment('1875-01-01'), moment('1950-01-01')])
       .range([0, canvas.width]);
