@@ -19,6 +19,7 @@ class Dossier extends Component {
     addFilter: PropTypes.func,
     handleClose: PropTypes.func,
     person: PropTypes.object,
+    toggleEvent: PropTypes.func,
   }
 
   componentDidMount = () => {
@@ -68,7 +69,7 @@ class Dossier extends Component {
             onClick={ this.props.handleClose }>
             &times;
           </button>
-          <p className="dossier__explanation">Ontdek de verbanden met de andere slachtoffers door te klikken op de categorieën.</p>
+          <p className="dossier__explanation">Ontdek de verbanden met de andere slachtoffers door te klikken op de categorieën met een <svg width="16" height="16" viewBox="0 0 32 32"><path fillRule="evenodd" d="M16 0l16 16-16 16L0 16"/></svg></p>
         </header>
         <main>
           <section className="dossier__passport">
@@ -132,8 +133,8 @@ class Dossier extends Component {
             <div className="dossier__passport-filters" ref={ ref => this._filters = ref  }>
               <h4>{ person.name }</h4>
 
-              <button id="category" onClick={ (e) => this.toggleFilter(e, 'category', person.category) }>
-                <svg viewBox="0 0 32 32">
+              <button className="dossier__filter-button" id="category" onClick={ (e) => this.toggleFilter(e, 'category', person.category) }>
+                <svg width="16" height="16" viewBox="0 0 32 32">
                   <path fillRule="evenodd" d="M16 0l16 16-16 16L0 16"/>
                 </svg>
                 <div className="dossier__filter-text">
@@ -142,8 +143,8 @@ class Dossier extends Component {
                 </div>
               </button>
 
-              <button id="profession" onClick={ (e) => this.toggleFilter(e, 'profession', person.profession) }>
-                <svg viewBox="0 0 32 32">
+              <button className="dossier__filter-button" id="profession" onClick={ (e) => this.toggleFilter(e, 'profession', person.profession) }>
+                <svg width="16" height="16" viewBox="0 0 32 32">
                   <path fillRule="evenodd" d="M16 0l16 16-16 16L0 16"/>
                 </svg>
                 <div className="dossier__filter-text">
@@ -152,13 +153,29 @@ class Dossier extends Component {
                 </div>
               </button>
 
-              <button id="causeOfDeath" onClick={ (e) => this.toggleFilter(e, 'causeOfDeath', person.causeOfDeath) }>
-                <svg viewBox="0 0 32 32">
+              <div className="dossier__event">
+                <button className="dossier__filter-button" id="causeOfDeath" onClick={ (e) => this.toggleFilter(e, 'causeOfDeath', person.causeOfDeath) }>
+                  <svg width="16" height="16" viewBox="0 0 32 32">
+                    <path fillRule="evenodd" d="M16 0l16 16-16 16L0 16"/>
+                  </svg>
+                  <div className="dossier__filter-text">
+                    <span className="dossier__label">Doodsoorzaak</span>
+                    <span>{ person.causeOfDeath }</span>
+                  </div>
+                </button>
+
+                { person.event &&
+                  <button className="dossier__event-toggle" onClick={ () => this.props.toggleEvent(person.event) }>i</button>
+                }
+              </div>
+
+              <button className="dossier__filter-button" id="graveyard" onClick={ (e) => this.toggleFilter(e, 'graveyard', person.graveyard) }>
+                <svg width="16" height="16" viewBox="0 0 32 32">
                   <path fillRule="evenodd" d="M16 0l16 16-16 16L0 16"/>
                 </svg>
                 <div className="dossier__filter-text">
-                  <span className="dossier__label">Doodsoorzaak</span>
-                  <span>{ person.causeOfDeath }</span>
+                  <span className="dossier__label">Ligt begraven op</span>
+                  <span>{ person.graveyard }</span>
                 </div>
               </button>
 
@@ -176,8 +193,8 @@ class Dossier extends Component {
             <section className="dossier__birth">
               <h5><img src={star} alt="Geboorte" /> Geboorte</h5>
 
-              <button id="birthdate" onClick={ (e) => this.toggleFilter(e, 'birthdate', person.birthdate) }>
-                <svg viewBox="0 0 32 32">
+              <button className="dossier__filter-button" id="birthdate" onClick={ (e) => this.toggleFilter(e, 'birthdate', person.birthdate) }>
+                <svg width="16" height="16" viewBox="0 0 32 32">
                   <path fillRule="evenodd" d="M16 0l16 16-16 16L0 16"/>
                 </svg>
                 <div className="dossier__filter-text">
@@ -186,8 +203,8 @@ class Dossier extends Component {
                 </div>
               </button>
 
-              <button id="birthplace" onClick={ (e) => this.toggleFilter(e, 'birthplace', person.birthplace) }>
-                <svg viewBox="0 0 32 32">
+              <button className="dossier__filter-button" id="birthplace" onClick={ (e) => this.toggleFilter(e, 'birthplace', person.birthplace) }>
+                <svg width="16" height="16" viewBox="0 0 32 32">
                   <path fillRule="evenodd" d="M16 0l16 16-16 16L0 16"/>
                 </svg>
                 <div className="dossier__filter-text">
@@ -196,8 +213,8 @@ class Dossier extends Component {
                 </div>
               </button>
 
-              <button id="birthcountry" onClick={ (e) => this.toggleFilter(e, 'birthcountry', person.birthcountry) }>
-                <svg viewBox="0 0 32 32">
+              <button className="dossier__filter-button" id="birthcountry" onClick={ (e) => this.toggleFilter(e, 'birthcountry', person.birthcountry) }>
+                <svg width="16" height="16" viewBox="0 0 32 32">
                   <path fillRule="evenodd" d="M16 0l16 16-16 16L0 16"/>
                 </svg>
                 <div className="dossier__filter-text">
@@ -209,8 +226,8 @@ class Dossier extends Component {
 
             <section className="dossier__death">
               <h5><img src={cross} alt="Overlijden" /> Overlijden</h5>
-              <button id="dateOfDeath" onClick={ (e) => this.toggleFilter(e, 'dateOfDeath', person.dateOfDeath) }>
-                <svg viewBox="0 0 32 32">
+              <button className="dossier__filter-button" id="dateOfDeath" onClick={ (e) => this.toggleFilter(e, 'dateOfDeath', person.dateOfDeath) }>
+                <svg width="16" height="16" viewBox="0 0 32 32">
                   <path fillRule="evenodd" d="M16 0l16 16-16 16L0 16"/>
                 </svg>
                 <div className="dossier__filter-text">
@@ -218,8 +235,9 @@ class Dossier extends Component {
                   <span>{ person.dateOfDeath.format('dddd D MMMM YYYY') }</span>
                 </div>
               </button>
-              <button id="placeOfDeath" onClick={ (e) => this.toggleFilter(e, 'placeOfDeath', person.placeOfDeath) }>
-                <svg viewBox="0 0 32 32">
+
+              <button className="dossier__filter-button" id="placeOfDeath" onClick={ (e) => this.toggleFilter(e, 'placeOfDeath', person.placeOfDeath) }>
+                <svg width="16" height="16" viewBox="0 0 32 32">
                   <path fillRule="evenodd" d="M16 0l16 16-16 16L0 16"/>
                 </svg>
                 <div className="dossier__filter-text">
@@ -227,8 +245,9 @@ class Dossier extends Component {
                   <span>{ person.placeOfDeath }</span>
                 </div>
               </button>
-              <button id="countryOfDeath" onClick={ (e) => this.toggleFilter(e, 'countryOfDeath', person.countryOfDeath) }>
-                <svg viewBox="0 0 32 32">
+
+              <button className="dossier__filter-button" id="countryOfDeath" onClick={ (e) => this.toggleFilter(e, 'countryOfDeath', person.countryOfDeath) }>
+                <svg width="16" height="16" viewBox="0 0 32 32">
                   <path fillRule="evenodd" d="M16 0l16 16-16 16L0 16"/>
                 </svg>
                 <div className="dossier__filter-text">
@@ -238,6 +257,14 @@ class Dossier extends Component {
               </button>
             </section>
           </section>
+
+          { person.story &&
+            <section className="dossier__story">
+              <span className="dossier__label">Meer informatie</span>
+              <p>{ person.story }</p>
+            </section>
+          }
+
         </main>
       </section>
     );

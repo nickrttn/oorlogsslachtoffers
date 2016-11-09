@@ -9,6 +9,7 @@ import 'moment/locale/nl';
 import Manipulation from '../Manipulation/Manipulation';
 import Lines from '../Lines/Lines';
 import Dossier from '../Dossier/Dossier';
+import Event from '../Event/Event';
 
 // Assets
 import './Visualisation.css';
@@ -16,13 +17,13 @@ import './Visualisation.css';
 class Visualisation extends Component {
   state = {
     data: [],
+    event: null,
     filteredData: null,
     activePerson: null,
     activeFilters: [],
   }
 
   componentDidMount() {
-    // Hier data laden, verwerken en de state updaten
     parse(`${process.env.PUBLIC_URL}/data/oorlogsslachtoffers.csv`, {
       header: true,
       complete: this.handleResults,
@@ -66,6 +67,7 @@ class Visualisation extends Component {
       graveyard: person.begraafplaats,
       listOfHonor: person.erelijst === 'Ja' ? true : false ,
       story: person.verhaal ? person.verhaal : false,
+      event: person.verhaaldood === 'Onbekend' ? false : person.verhaaldood,
       rank: person.categorie === 'Militair' ? person.rang : false,
       awards: person.onderscheiding === 'Nee' ? false : {
         bronzenKruis: person.onderscheiding.includes('Bronzen'),
@@ -205,6 +207,14 @@ class Visualisation extends Component {
     this.setState({ data });
   }
 
+  setEvent = (event) => {
+    this.setState({ event });
+  }
+
+  resetEvent = () => {
+    this.setState({ event: null });
+  }
+
   setActivePerson = (id) => {
     const data = [ ...this.state.data ];
     let activePerson = data.find(d => id === d.id);
@@ -251,10 +261,15 @@ class Visualisation extends Component {
                 activeFilters={ this.state.activeFilters }
                 addFilter={ this.addFilter }
                 handleClose={ this.resetActivePerson}
+                toggleEvent={ this.setEvent }
                 person={ this.state.activePerson } />
             </Sticky>
           }
         </StickyContainer>
+
+        { this.state.event &&
+          <Event event={ this.state.event } handleClose={ this.resetEvent} />
+        }
       </div>
     );
   }
