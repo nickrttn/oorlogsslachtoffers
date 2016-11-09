@@ -122,7 +122,8 @@
   margin-left: 2em;
 }
 
-.dossier__passport-filters button {
+.dossier__passport-filters button,
+.dossier__birthDeath button {
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
@@ -133,14 +134,16 @@
   padding: 0;
 }
 
-.dossier__passport-filters button svg {
+.dossier__passport-filters button svg,
+.dossier__birthDeath button svg {
   fill: rgba(255, 255, 255, 0.2);
   height: 1em;
   width: auto;
   transition: all 120ms ease-in-out;
 }
 
-.dossier__passport-filters button.active svg {
+.dossier__passport-filters button.active svg,
+.dossier__birthDeath button.active svg {
   fill: rgb(251, 212, 119);
 }
 
@@ -151,9 +154,33 @@
   margin-left: 1em;
 }
 
+.dossier__filter-text span {
+  text-align: left;
+}
+
 
 .dossier__passport-filters p {
   margin-top: 0;
+}
+
+.dossier__birthDeath {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+}
+
+.dossier__birthDeath h5 {
+  font-size: 1.25em;
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: .5em;
+  font-weight: 400;
+}
+
+.dossier__birthDeath h5 img {
+  max-height: 1em;
+  width: auto;
+  margin-right: .5em;
 }
 
 .dossier__label {
@@ -163,7 +190,7 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  margin-bottom: .25em;
+  margin-bottom: .35em;
 }
 
 .dossier__label ~ span {

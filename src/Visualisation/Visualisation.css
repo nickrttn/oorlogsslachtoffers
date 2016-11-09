@@ -1,6 +1,6 @@
 .container {
   background: url(./clouds.png) no-repeat center,
-              radial-gradient(circle, rgba(251, 212, 119, 0.1) 0%, rgba(63, 55, 39, 0) 40%),
+              /*radial-gradient(circle, rgba(251, 212, 119, 0.1) 0%, rgba(63, 55, 39, 0) 40%),*/
               #29241C;
   background-blend-mode: overlay, normal, normal;
   background-size: cover, contain, cover;

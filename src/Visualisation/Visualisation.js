@@ -188,7 +188,13 @@ class Visualisation extends Component {
 
       activeFilters.forEach(filter => {
         const filterKey = Object.keys(filter)[0];
-        if (!d[filterKey].includes(filter[filterKey])) {
+        if (typeof d[filterKey] === 'object') {
+          if (moment.isMoment(d[filterKey])) {
+            if (!d[filterKey].isSame(filter[filterKey])) {
+              falseHits++;
+            }
+          }
+        } else if (!d[filterKey].includes(filter[filterKey])) {
           falseHits++;
         }
       });

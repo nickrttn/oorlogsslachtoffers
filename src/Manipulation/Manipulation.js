@@ -1,5 +1,6 @@
 // Modules
 import React, { Component, PropTypes } from 'react';
+import moment from 'moment';
 
 // Assets
 import './Manipulation.css';
@@ -30,9 +31,10 @@ class Manipulation extends Component {
     return !this.props.activeFilters ? null :
     this.props.activeFilters.map((filter, index) => {
       const key = Object.keys(filter)[0];
+      console.log(filter, key);
       return (
         <li className="activeFilter" key={ `${key}-${index}` }>
-          <button onClick={ () => this.props.removeFilter(key, filter[key]) }>{ filter[key] } <span className="remove">&times;</span></button>
+          <button onClick={ () => this.props.removeFilter(key, filter[key]) }>{ moment.isMoment(filter[key]) ? filter[key].format('D MMMM YYYY') : filter[key] } <span className="remove">&times;</span></button>
         </li>
       );
     });
