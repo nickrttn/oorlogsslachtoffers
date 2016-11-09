@@ -201,6 +201,32 @@ class IntroductionAnimation extends Component {
       .duration(200)
       .attr('opacity', 1);
 
+    renderGroup.append('text')
+      .attr('class', 'label')
+      .text('Doodsoorzaak')
+      .attr('opacity', 0)
+      .attr('text-anchor', 'left')
+      .attr('font-size', 12)
+      .attr('x', (canvas.width / 2) + (166 / 2) + 24)
+      .attr('y', 72 + 56 + 24 + 32 + 24 + 32 + 24 + 32)
+      .transition()
+      .delay(5200)
+      .duration(400)
+      .attr('opacity', 1);
+
+    renderGroup.append('text')
+      .attr('class', 'info')
+      .text('Engelandvaarder, in gevangenschap aan de gevolgen van mishandeling overleden')
+      .attr('opacity', 0)
+      .attr('text-anchor', 'left')
+      .attr('font-size', 16)
+      .attr('x', (canvas.width / 2) + (166 / 2) + 24)
+      .attr('y', 72 + 56 + 24 + 32 + 24 + 32 + 24 + 32 + 24)
+      .transition()
+      .delay(5200)
+      .duration(400)
+      .attr('opacity', 1);
+
     svg.transition()
       .delay(6300)
       .duration(1200)
