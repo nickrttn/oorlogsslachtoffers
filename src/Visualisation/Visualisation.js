@@ -69,6 +69,18 @@ class Visualisation extends Component {
       rank: person.categorie === 'Militair' ? person.rang : false,
     }));
 
+    data.sort((a, b) => {
+      if (a.birthdate.isBefore(b.birthdate)) {
+        return -1;
+      } else if (a.birthdate.isSame(b.birthdate)) {
+        return 0;
+      } else if (b.birthdate.isBefore(a.birthdate)) {
+        return 1;
+      }
+
+      return 0;
+    });
+
     this.setState({ data });
   }
 
@@ -113,7 +125,7 @@ class Visualisation extends Component {
     this.updateFilters(activeFilters);
   }
 
-  sortData = (event, key) => {
+  sortData = (event) => {
     const data = [ ...this.state.data ];
 
     switch(event.target.value) {
@@ -200,7 +212,7 @@ class Visualisation extends Component {
     return (
       <div className="container">
         <header className="header">
-          <h1 className="header__title">Oorlogsgraven in Amsterdam</h1>
+          <h1 className="header__title">Oorlogsgraven <span>in Amsterdam</span></h1>
         </header>
 
         { /* In Manipulation zitten filters, sorteeropties en de brush. */ }

@@ -16,8 +16,12 @@
 .introduction__title {
   color: white;
   font-size: 5em;
-  font-weight: 400;
   text-align: center;
+  margin-bottom: 0;
+}
+
+.introduction__title span {
+  font-weight: 400;
 }
 
 .introduction__subtitle {
@@ -28,8 +32,21 @@
   margin-top: 0;
 }
 
+.introduction__explanation {
+  font-size: 1.25em;
+  max-width: 40em;
+  color: white;
+  text-align: center;
+}
+
 .button.button--introduction {
   box-shadow: inset 0 -3px rgba(0, 0, 0, 0.3);
   font-size: 1.5em;
   padding: .75em 2em;
+  transition: box-shadow 200ms ease-in-out;
+}
+
+.button.button--introduction:hover {
+  background: rgba(251, 212, 119, 1);
+  box-shadow: 0 0 .5em rgba(251, 212, 119, 1);
 }

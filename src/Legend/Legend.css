@@ -1,6 +1,8 @@
 .legend {
   display: flex;
   padding: 1em 0;
+  font-family: Avenir, --apple-system, sans-serif;
+  font-size: 0.8em;
 }
 
 .legend__definition {
@@ -11,5 +13,5 @@
 
 .legend__image {
   margin-right: 1em;
-  max-height: 1.25em;
+  max-height: 1em;
 }

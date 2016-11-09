@@ -23,6 +23,12 @@
 
 .manipulation__sorting {
   margin: 0 0 0 1vw;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  position: relative;
+  padding-right: 1em;
+  border-right: 1px solid white;
 }
 
 .manipulation__sorting p {
@@ -30,15 +36,22 @@
   color: #C0BEBB;
 }
 
+.manipulation__sorting-icon {
+  margin-right: .5em;
+}
+
 .sorting__select {
-  appearance: none;
+  /*appearance: none;*/
+  font-family: Avenir, --apple-system, sans-serif;
+  font-weight: 400;
   display: block;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid white;
+  background: transparent;
+  border: 0;
   font-size: 1em;
   color: white;
   padding: .5em 1em;
   border-radius: .25em;
+  cursor: pointer;
 }
 
 .manipulation__filters {
@@ -94,12 +107,18 @@
 }
 
 .activeFilters {
-  margin: 0 1em;
+  display: inline-flex;
+  flex-flow: row nowrap;
+  margin: 0 1.5em;
   color: #C0BEBB;
 }
 
 .activeFilters p {
   margin-bottom: .5em;
+}
+
+.activeFilters__icon {
+  margin-right: .5em;
 }
 
 .activeFilters ul {
@@ -108,7 +127,7 @@
   align-items: center;
   list-style-type: none;
   padding-left: 0;
-  margin-left: 0;
+  margin: 0;
 }
 
 .activeFilters li {
@@ -121,13 +140,27 @@
 }
 
 .activeFilters button {
+  font-family: Avenir, --apple-system, sans-serif;
   appearance: none;
-  border: 1px solid white;
-  background: rgba(255, 255, 255, 0.1);
+  border: 0;
+  background: transparent;
   color: white;
   font-size: 1em;
-  padding: .5em 1em;
+  padding: .5em .25em;
   border-radius: .25em;
+}
+
+.activeFilter button {
+  padding: .5em 1em;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.addFilter span {
+  display: inline-block;
+  transform: rotate(0.25turn);
+  margin-left: .25em;
+  font-family: --apple-system;
+  color: rgba(251, 212, 119, 1);
 }
 
 .activeFilters .remove {
@@ -138,6 +171,7 @@
 }
 
 .activeFilters .reset {
-  border: 1px solid rgba(210, 0, 0, 1);
+  padding: .5em 1em;
+  border: 0;
   background: rgba(210, 0, 0, 0.1);
 }

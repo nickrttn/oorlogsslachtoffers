@@ -1,5 +1,6 @@
 // Modules
 import React, { Component, PropTypes } from 'react';
+import { StaggeredMotion, spring } from 'react-motion';
 import { axisBottom, scaleTime, select } from 'd3';
 import moment from 'moment';
 import 'moment/locale/nl';
@@ -89,6 +90,12 @@ class Lines extends Component {
     this.setState({ tooltip: { show: false }});
   }
 
+  getEndPositions = () => {
+    const { data } = this.props;
+    const { x } = this.state;
+    return data.map(d => ({ x2: spring(x(d.dateOfDeath)) }))
+  }
+
   render() {
     const { data, dossierActive, handleLineClick } = this.props;
     const { tooltip, x } = this.state;
@@ -102,14 +109,33 @@ class Lines extends Component {
         >
           <svg width="100%" height={ (data.length * 20) + 30 }>
             { data.length > 0 && this.renderWarRect() }
-            { data.length > 0 && data.map((d, i) =>
-              <Line
-                key={ d.id } d={d} i={i} y={ 10 + i * 20 }
-                x1={ x(d.birthdate) } x2={ x(d.dateOfDeath) }
-                hideTooltip={ this.hideTooltip }
-                showTooltip={ this.showTooltip }
-                handleClick={ handleLineClick } />
-            )}
+            { data.length > 0 &&
+              <StaggeredMotion
+                defaultStyles={ data.map(d => ({ percent: x(d.birthdate) / x(d.dateOfDeath) })) }
+                styles={ (previousStyles) => previousStyles.map((prev, i) => {
+                  if (i === 0) {
+                    return { percent: spring(1) }
+                  } else {
+                    const lastLinePreviousPercent = previousStyles[i - 1].percent;
+                    const thisLinePreviousPercent = previousStyles[i].percent;
+                    return { percent: lastLinePreviousPercent > 0.7 ? spring(1, { stiffness: 200, damping: 20 }) : spring(thisLinePreviousPercent) }
+                  }
+                }) }
+              >
+                { interpolatingStyles =>
+                  <g>
+                  { interpolatingStyles.map((style, i) =>
+                    <Line
+                      key={ data[i].id } d={ data[i] } i={ i } y={ 10 + i * 20 }
+                      x1={ x(data[i].birthdate) } x2={ x(data[i].dateOfDeath) * style.percent }
+                      hideTooltip={ this.hideTooltip }
+                      showTooltip={ this.showTooltip }
+                      handleClick={ handleLineClick } />
+                  )}
+                  </g>
+                }
+              </StaggeredMotion>
+            }
           </svg>
           <svg className="axis" width='100%' height="50px">
             <g ref={ ref => this._axis = ref }

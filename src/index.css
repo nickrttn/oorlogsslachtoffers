@@ -1,3 +1,33 @@
+@font-face {
+  font-family: Scala;
+  src: url('fonts/scala-bold.woff2') format('woff2'),
+       url('fonts/scala-bold.woff') format('woff');
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+    font-family: Scala;
+    src: url('fonts/scala.woff2') format('woff2'),
+         url('fonts/scala.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: Avenir;
+    src: url('fonts/avenir-book.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: Avenir;
+    src: url('fonts/avenir-heavy.woff') format('woff');
+    font-weight: 800;
+    font-style: normal;
+}
+
 html {
   box-sizing: border-box;
 }
@@ -9,18 +39,19 @@ html {
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Georgia', --apple-system, 'Segoe UI', sans-serif;
+  font-family: Scala, Georgia, serif;
   line-height: 1.45;
   font-feature-settings: 'kern', 'liga', 'clig';
   font-variant: common-ligatures;
 }
 
-p {margin-bottom: 1.3em;}
+p {
+  margin-bottom: 1.3em;
+}
 
 h1, h2, h3, h4 {
-  font-family: 'Georgia', --apple-system, 'Segoe UI', 'Helvetica Neue', sans-serif;
+  font-family: Scala, Georgia, serif;
   margin: 1.414em 0 0.5em;
-  font-weight: inherit;
   line-height: 1.2;
 }
 

@@ -1,5 +1,10 @@
+// Modules
 import React, { Component, PropTypes } from 'react';
+
+// Assets
 import './Manipulation.css';
+import filterIcon from './svg/filter_icon.svg';
+import sortIcon from './svg/sort_icon.svg';
 
 class Manipulation extends Component {
   static props = {
@@ -26,8 +31,8 @@ class Manipulation extends Component {
     this.props.activeFilters.map((filter, index) => {
       const key = Object.keys(filter)[0];
       return (
-        <li key={ `${key}-${index}` }>
-          { filter[key] } <button className="remove" onClick={ () => this.props.removeFilter(key, filter[key]) }>&times;</button>
+        <li className="activeFilter" key={ `${key}-${index}` }>
+          <button onClick={ () => this.props.removeFilter(key, filter[key]) }>{ filter[key] } <span className="remove">&times;</span></button>
         </li>
       );
     });
@@ -42,20 +47,20 @@ class Manipulation extends Component {
     return (
       <section className="manipulation">
         <div className="manipulation__sorting">
-          <p>Sorteer op</p>
-          <select className="sorting__select" defaultValue onInput={ this.props.handleSort }>
-            <option value disabled>Kies een optie</option>
+          <img src={ sortIcon } className="manipulation__sorting-icon" alt="Sorteren" />
+          <select className="sorting__select" defaultValue="birtdate" onInput={ this.props.handleSort }>
             <option value="birthdate">Geboortedatum</option>
             <option value="dateOfDeath">Sterfdatum</option>
             <option value="age-ascend">Jong &rarr; Oud</option>
             <option value="age-descend">Oud &rarr; Jong</option>
           </select>
         </div>
+
         <div className="activeFilters">
-          <p>Filter op</p>
-          <ul className="activeFilters">
+          <img src={ filterIcon } className="activeFilters__icon" alt="Sorteren" />
+          <ul>
             <li className="addFilter">
-              <button onClick={ this.toggleFilterPanel }>Filter toevoegen</button>
+              <button onClick={ this.toggleFilterPanel }>Filters <span>&#8227;</span></button>
             </li>
             { this.renderActiveFilters() }
             { this.props.activeFilters.length > 0 &&
