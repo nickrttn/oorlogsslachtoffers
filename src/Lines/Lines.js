@@ -57,13 +57,16 @@ class Lines extends Component {
       end: moment('1945-09-02')
     }
 
-    return <rect
-      className="war"
-      x={ x(war.start) }
-      y="0"
-      width={ x(war.end) - x(war.start) }
-      height="100%"
-    />
+    return <g transform={ `translate(${x(war.start)} 0)`}>
+      <text x={ (x(war.end) - x(war.start)) / 2 } dy="20" y="0" textAnchor="middle" className="war__explanation">WO2</text>
+      <rect
+        className="war"
+        x={ 0 }
+        y="0"
+        width={ x(war.end) - x(war.start) }
+        height="100%"
+      />
+    </g>
   }
 
   showTooltip = (event, person) => {

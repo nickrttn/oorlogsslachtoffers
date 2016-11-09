@@ -35,9 +35,9 @@ class Line extends Component {
         onMouseOver={ (event) => showTooltip(event, d) }
         onMouseOut={ () => hideTooltip() } >
         <rect className="line__rect" x={ x1 } y={ y - 10 } width={ rectWidth } height="20px" />
-        <image x={ x1 - 15 } y={ y -5 } height="10" width="11.25px" preserveAspectRatio="xMinYMid" xlinkHref={ star } />
+        <image x={ x1 - 18 } y={ y - 6 } height="12" width="13.5" preserveAspectRatio="xMinYMid" xlinkHref={ star } />
         <line className="line" x1={ x1 } x2={ x2 } y1={ y } y2={ y } style={{ opacity: d.active || d.activeInFilter ? 1 : 0.3, strokeWidth: d.active ? 4 : 2, stroke: d.active ? '#fbd477' : '#fff' }} />
-        <image x={ x2 + 6 } y={ y - 5 } height="10" width="6.88px" preserveAspectRatio="xMinYMid" xlinkHref={ d.monument ? monument : cross } />
+        <image x={ x2 + 8 } y={ y - 6 } height="12" width="8.256" preserveAspectRatio="xMinYMid" xlinkHref={ d.monument ? monument : cross } />
       </g>
     );
   }
