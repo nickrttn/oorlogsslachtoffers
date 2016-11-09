@@ -193,6 +193,10 @@
   color: rgba(251, 212, 119, 1);
 }
 
+.manipulation__active-filters-icon {
+  margin-right: 1em;
+}
+
 .manipulation__active-filters-reset button {
   padding: .5em 1em;
   border: 0;

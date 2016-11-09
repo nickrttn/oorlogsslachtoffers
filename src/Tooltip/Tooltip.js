@@ -19,7 +19,7 @@ class Tooltip extends Component {
     return !show ? null : (
       <div className="tooltip" style={{ left: position.x, top: position.y }}>
         <h4>{ person.name }</h4>
-        <p>{ person.profession }</p>
+        <p>{ person.category }</p>
         <p><img src={ star } alt="Geboortedatum" /> { person.birth }</p>
         <p><img src={ cross } alt="Sterfdatum" /> { person.death }</p>
         <p>Klik op de lijn om het dossier te bekijken</p>
