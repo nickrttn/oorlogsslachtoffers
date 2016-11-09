@@ -67,6 +67,14 @@ class Visualisation extends Component {
       listOfHonor: person.erelijst === 'Ja' ? true : false ,
       story: person.verhaal ? person.verhaal : false,
       rank: person.categorie === 'Militair' ? person.rang : false,
+      awards: person.onderscheiding === 'Nee' ? false : {
+        bronzenKruis: person.onderscheiding.includes('Bronzen'),
+        ordeVanNassau: person.onderscheiding.includes('Oranje-Nassau'),
+        kruisVanVerdienste: person.onderscheiding.includes('Verdienste'),
+        ordeNederlandseLeeuw: person.onderscheiding.includes('Leeuw'),
+        MWO4eKL: person.onderscheiding.includes('MWO'),
+        verzetskruis: person.onderscheiding.includes('Verzetskruis'),
+      }
     }));
 
     data.sort((a, b) => {

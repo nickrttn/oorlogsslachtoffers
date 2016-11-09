@@ -35,8 +35,6 @@ class Lines extends Component {
     const axis = axisBottom(xScale).ticks(15);
     select(this._axis).call(axis);
 
-    console.log('cDM');
-
     this.setState({ x: xScale, width: bbox.width });
   }
 
