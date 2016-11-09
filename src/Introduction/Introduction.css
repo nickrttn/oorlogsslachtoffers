@@ -44,6 +44,7 @@
   font-size: 1.5em;
   padding: .65em 2em;
   transition: all 120ms ease-in-out;
+  font-family: Avenir, --apple-system, sans-serif;
 }
 
 .button.button--introduction:hover {

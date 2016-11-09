@@ -21,7 +21,7 @@ class Visualisation extends Component {
     filteredData: null,
     activePerson: null,
     activeFilters: [],
-    introAnimationFinished: true,
+    introAnimationFinished: false,
   }
 
   componentDidMount() {
