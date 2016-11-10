@@ -34,7 +34,7 @@ class Manipulation extends Component {
       return (
         <li className="manipulation__active-filter" key={ `${key}-${index}` }>
           <button onClick={ () => this.props.removeFilter(key, filter[key]) }>
-            { moment.isMoment(filter[key]) ? filter[key].format('D MMMM YYYY') : typeof filter[key] === 'boolean' ? 'Ja' : 'Nee' }
+            { moment.isMoment(filter[key]) ? filter[key].format('D MMMM YYYY') : typeof filter[key] === 'boolean' ? 'Ja' : filter[key] }
             <span className="manipulation__active-filter-remove">&times;</span>
           </button>
         </li>
