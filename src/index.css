@@ -43,6 +43,7 @@ body {
   line-height: 1.45;
   font-feature-settings: 'kern', 'liga', 'clig';
   font-variant: common-ligatures;
+  font-smoothing: anti-aliased;
 }
 
 p {
@@ -70,6 +71,10 @@ h3 {
 
 h4 {
   font-size: 1.5em;
+}
+
+svg {
+  shape-rendering: auto;
 }
 
 .button {
